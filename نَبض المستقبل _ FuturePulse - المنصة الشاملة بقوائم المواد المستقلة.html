@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نَبض المستقبل | FuturePulse - منصة البكالوريا المصرية 2026-2027</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; }
+        .glass-card { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.35); }
+            50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+        }
+        .pulse-badge { animation: pulseGlow 2.5s infinite; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden selection:bg-indigo-600 selection:text-white">
+
+    <!-- Toast Notification Banner -->
+    <div id="toast-box" class="fixed bottom-5 start-5 z-50 hidden transform transition-all duration-300 max-w-sm">
+        <div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-2xl border border-slate-700 dark:border-slate-200 text-xs sm:text-sm font-extrabold">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-base"></i>
+            <span id="toast-msg">تم التحديث بنجاح!</span>
+        </div>
+    </div>
+
+    <!-- 1. CLASSIC CLEAN STICKY NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 glass-card border-b border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            <!-- Brand Logo & Site Leader Badge -->
+            <a href="#top" class="flex items-center gap-2.5 group shrink-0">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-wave-square text-lg sm:text-xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-base sm:text-xl font-black tracking-tight bg-gradient-to-r from-indigo-600 to-emerald-600 dark:from-indigo-400 dark:to-emerald-400 bg-clip-text text-transparent" data-i18n="brandName">نَبض المستقبل</span>
+                        <span class="hidden md:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 text-[10px] font-black border border-amber-300/60 dark:border-amber-700/60">
+                            <i class="fa-solid fa-crown text-[9px]"></i>
+                            <span data-i18n="leaderShort">عمار أشرف عبدالمنصف</span>
+                        </span>
+                    </div>
+                    <p class="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400" data-i18n="brandSub">FuturePulse • تانية بكالوريا 2026-2027</p>
+                </div>
+            </a>
+
+            <!-- Classic Clean Desktop Nav Links -->
+            <nav class="hidden xl:flex items-center gap-1.5 text-xs font-extrabold">
+                <button onclick="navigateToView('home')" id="nav-btn-home" class="nav-view-btn px-3 py-2 rounded-xl bg-indigo-600 text-white transition-all" data-i18n="navHome">الرئيسية</button>
+                <button onclick="navigateToView('arabic')" id="nav-btn-arabic" class="nav-view-btn px-3 py-2 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/60 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all" data-i18n="navArabic">اللغة العربية</button>
+                <button onclick="navigateToView('english')" id="nav-btn-english" class="nav-view-btn px-3 py-2 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/60 hover:text-sky-600 dark:hover:text-sky-400 transition-all" data-i18n="navEnglish">اللغة الإنجليزية</button>
+                <button onclick="navigateToView('history')" id="nav-btn-history" class="nav-view-btn px-3 py-2 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/60 hover:text-amber-600 dark:hover:text-amber-400 transition-all" data-i18n="navHistory">التاريخ الوطني</button>
+                <button onclick="navigateToView('prog')" id="nav-btn-prog" class="nav-view-btn px-3 py-2 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-950/60 hover:text-purple-600 dark:hover:text-purple-400 transition-all" data-i18n="navProg">البرمجة والـ AI</button>
+                <button onclick="navigateToView('assessments')" id="nav-btn-assessments" class="nav-view-btn px-3 py-2 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-950/60 hover:text-teal-600 dark:hover:text-teal-400 transition-all" data-i18n="navAssessments">التقييمات المحلولة</button>
+            </nav>
+
+            <!-- Action Controls: XP, Theme Toggle, Language Toggle, Login/Account -->
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <!-- XP Pill -->
+                <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-700 dark:text-amber-300 text-xs font-black">
+                    <i class="fa-solid fa-star text-amber-500"></i>
+                    <span id="xp-display">0 XP</span>
+                </div>
+
+                <!-- Dark / Light Mode Button -->
+                <button onclick="toggleTheme()" id="theme-toggle-btn" class="px-2.5 sm:px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs font-extrabold flex items-center gap-1.5 transition-all" aria-label="Toggle Theme">
+                    <i id="theme-icon" class="fa-solid fa-moon text-indigo-600 dark:text-amber-400"></i>
+                    <span id="theme-label" class="hidden md:inline">الوضع الليلي</span>
+                </button>
+
+                <!-- AR / EN Language Toggle -->
+                <button onclick="toggleLanguage()" class="px-2.5 sm:px-3 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/70 hover:bg-indigo-100 dark:hover:bg-indigo-900 border border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-black flex items-center gap-1.5 transition-all">
+                    <i class="fa-solid fa-globe"></i>
+                    <span id="lang-btn-text">English</span>
+                </button>
+
+                <!-- Auth / Student Account Button -->
+                <button onclick="handleAuthHeaderClick()" id="auth-header-btn" class="px-3 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-extrabold shadow-md shadow-indigo-500/20 flex items-center gap-1.5 transition-all">
+                    <i class="fa-solid fa-user-circle"></i>
+                    <span id="auth-header-text" data-i18n="navLogin">تسجيل الدخول</span>
+                </button>
+
+                <!-- Mobile Hamburger -->
+                <button onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200" aria-label="Menu">
+                    <i class="fa-solid fa-bars text-base"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Nav -->
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 space-y-1.5">
+            <button onclick="navigateToView('home'); toggleMobileMenu()" class="w-full text-start py-2 px-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-extrabold text-sm" data-i18n="navHome">الرئيسية (لوحة المنصة)</button>
+            <button onclick="navigateToView('arabic'); toggleMobileMenu()" class="w-full text-start py-2 px-3 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-950/50 font-extrabold text-sm text-emerald-600 dark:text-emerald-400" data-i18n="navArabic">قائمة اللغة العربية (17 درساً ورواية)</button>
+            <button onclick="navigateToView('english'); toggleMobileMenu()" class="w-full text-start py-2 px-3 rounded-xl hover:bg-sky-50 dark:hover:bg-sky-950/50 font-extrabold text-sm text-sky-600 dark:text-sky-400" data-i18n="navEnglish">قائمة اللغة الإنجليزية (17 وحدة ومسرحية)</button>
+            <button onclick="navigateToView('history'); toggleMobileMenu()" class="w-full text-start py-2 px-3 rounded-xl hover:bg-amber-50 dark:hover:bg-amber-950/50 font-extrabold text-sm text-amber-600 dark:text-amber-400" data-i18n="navHistory">قائمة التاريخ الوطني (23 درساً)</button>
+            <button onclick="navigateToView('prog'); toggleMobileMenu()" class="w-full text-start py-2 px-3 rounded-xl hover:bg-purple-50 dark:hover:bg-purple-950/50 font-extrabold text-sm text-purple-600 dark:text-purple-400" data-i18n="navProg">قائمة البرمجة والذكاء الاصطناعي (7 فصول)</button>
+            <button onclick="navigateToView('assessments'); toggleMobileMenu()" class="w-full text-start py-2 px-3 rounded-xl hover:bg-teal-50 dark:hover:bg-teal-950/50 font-extrabold text-sm text-teal-600 dark:text-teal-400" data-i18n="navAssessments">قائمة التقييمات المحلولة (40 تقييماً)</button>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- DEDICATED SUBJECT PORTAL BANNER (VISIBLE WHEN INSIDE A SUBJECT PAGE) -->
+        <div id="subject-portal-header" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+            <div id="portal-banner-card" class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-600 to-purple-700 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="space-y-2">
+                    <button onclick="navigateToView('home')" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 text-xs font-extrabold transition-colors">
+                        <i class="fa-solid fa-arrow-right rtl:rotate-0 ltr:rotate-180"></i>
+                        <span data-i18n="backHomeBtn">العودة للقائمة الرئيسية</span>
+                    </button>
+                    <h1 id="portal-banner-title" class="text-2xl sm:text-4xl font-black">بوابة اللغة العربية</h1>
+                    <p id="portal-banner-desc" class="text-xs sm:text-sm text-white/90 max-w-2xl font-medium"></p>
+                </div>
+                <div class="flex flex-wrap gap-2 shrink-0">
+                    <a href="#lessons" class="px-4 py-2.5 rounded-2xl bg-white text-slate-900 font-black text-xs sm:text-sm shadow-md hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-book-open me-1"></i> <span data-i18n="portalJumpLessons">دروس المادة</span>
+                    </a>
+                    <a href="#quiz-hub" class="px-4 py-2.5 rounded-2xl bg-slate-900/40 hover:bg-slate-900/60 border border-white/25 text-white font-black text-xs sm:text-sm transition-colors">
+                        <i class="fa-solid fa-bolt me-1 text-amber-300"></i> <span data-i18n="portalJumpQuiz">امتحانات المادة</span>
+                    </a>
+                    <a href="#assessments" class="px-4 py-2.5 rounded-2xl bg-slate-900/40 hover:bg-slate-900/60 border border-white/25 text-white font-black text-xs sm:text-sm transition-colors">
+                        <i class="fa-solid fa-check-double me-1 text-emerald-300"></i> <span data-i18n="portalJumpAss">التقييمات المحلولة</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. RESTORED CLASSIC HERO SECTION WITH DEDICATED SUBJECT MENU CARDS -->
+        <section id="hero-section" class="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+                    منصة تعليمية جماعية تجمع مناهج الوزارة الكاملة (اللغة العربية بـ 6 وحدات و10 روايات، اللغة الإنجليزية للترمين 1 و 2 + مسرحية King Lear، التاريخ الوطني، والبرمجة والذكاء الاصطناعي) مع 40 تقييماً وزارياً محلولاً وبنك 120 سؤال امتحان.
+                </p>
+
+                <!-- Direct CTA Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+                    <a href="#subject-menus-grid" class="px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm shadow-lg shadow-indigo-500/25 flex items-center gap-2 transition-all hover:-translate-y-0.5">
+                        <i class="fa-solid fa-compass"></i>
+                        <span data-i18n="ctaLessons">اختر قائمة المادة الدراسية</span>
+                    </a>
+                    <button onclick="navigateToView('assessments')" class="px-6 py-3.5 rounded-2xl bg-teal-600 hover:bg-teal-700 text-white font-extrabold text-sm shadow-lg shadow-teal-500/25 flex items-center gap-2 transition-all hover:-translate-y-0.5">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                        <span data-i18n="ctaAssessments">قائمة التقييمات المحلولة (40)</span>
+                    </button>
+                    <a href="#quiz-hub" class="px-6 py-3.5 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 font-extrabold text-sm shadow-sm flex items-center gap-2 transition-all hover:-translate-y-0.5">
+                        <i class="fa-solid fa-bolt text-amber-500"></i>
+                        <span data-i18n="ctaQuiz">الامتحانات الشاملة (120 سؤال)</span>
+                    </a>
+                </div>
+
+                <!-- DEDICATED INTERACTIVE SUBJECT PORTAL MENUS (5 PORTAL CARDS) -->
+                <div id="subject-menus-grid" class="pt-6 max-w-6xl mx-auto text-start">
+                    <div class="flex items-center justify-between mb-3 px-1">
+                        <h2 class="text-sm sm:text-base font-black text-slate-700 dark:text-slate-200 flex items-center gap-2">
+                            <i class="fa-solid fa-grid-2 text-indigo-600"></i>
+                            <span data-i18n="menusHeading">قوائم المواد الدراسية والتقييمات (اضغط لفتح واجهة المادة):</span>
+                        </h2>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+                        <!-- Arabic Menu Card -->
+                        <button onclick="navigateToView('arabic')" class="group p-4 sm:p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 border-2 border-emerald-200/80 dark:border-emerald-800/80 hover:border-emerald-500 shadow-md hover:shadow-xl text-start transition-all hover:-translate-y-1 flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="w-11 h-11 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-lg shadow-md mb-3 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-feather-pointed"></i>
+                                </div>
+                                <h3 class="text-base font-black text-slate-900 dark:text-white" data-i18n="menuArabTitle">قائمة اللغة العربية</h3>
+                                <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1" data-i18n="menuArabSub">6 وحدات + 10 روايات + 32 سؤال + 10 تقييمات</p>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-black text-emerald-600 dark:text-emerald-400">
+                                <span data-i18n="openPortalBtn">دخول القائمة</span>
+                                <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180"></i>
+                            </span>
+                        </button>
+
+                        <!-- English Menu Card -->
+                        <button onclick="navigateToView('english')" class="group p-4 sm:p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 border-2 border-sky-200/80 dark:border-sky-800/80 hover:border-sky-500 shadow-md hover:shadow-xl text-start transition-all hover:-translate-y-1 flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="w-11 h-11 rounded-2xl bg-sky-600 text-white flex items-center justify-center text-lg shadow-md mb-3 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-earth-europe"></i>
+                                </div>
+                                <h3 class="text-base font-black text-slate-900 dark:text-white" data-i18n="menuEngTitle">قائمة اللغة الإنجليزية</h3>
+                                <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1" data-i18n="menuEngSub">12 وحدة + King Lear + 40 سؤال + 10 تقييمات</p>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-black text-sky-600 dark:text-sky-400">
+                                <span data-i18n="openPortalBtn">دخول القائمة</span>
+                                <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180"></i>
+                            </span>
+                        </button>
+
+                        <!-- History Menu Card -->
+                        <button onclick="navigateToView('history')" class="group p-4 sm:p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 border-2 border-amber-200/80 dark:border-amber-800/80 hover:border-amber-500 shadow-md hover:shadow-xl text-start transition-all hover:-translate-y-1 flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="w-11 h-11 rounded-2xl bg-amber-600 text-white flex items-center justify-center text-lg shadow-md mb-3 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-landmark-dome"></i>
+                                </div>
+                                <h3 class="text-base font-black text-slate-900 dark:text-white" data-i18n="menuHistTitle">قائمة التاريخ الوطني</h3>
+                                <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1" data-i18n="menuHistSub">6 وحدات (23 درساً) + 26 سؤال + 10 تقييمات</p>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-black text-amber-600 dark:text-amber-400">
+                                <span data-i18n="openPortalBtn">دخول القائمة</span>
+                                <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180"></i>
+                            </span>
+                        </button>
+
+                        <!-- Programming Menu Card -->
+                        <button onclick="navigateToView('prog')" class="group p-4 sm:p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 border-2 border-purple-200/80 dark:border-purple-800/80 hover:border-purple-500 shadow-md hover:shadow-xl text-start transition-all hover:-translate-y-1 flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="w-11 h-11 rounded-2xl bg-purple-600 text-white flex items-center justify-center text-lg shadow-md mb-3 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <h3 class="text-base font-black text-slate-900 dark:text-white" data-i18n="menuProgTitle">قائمة البرمجة والـ AI</h3>
+                                <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1" data-i18n="menuProgSub">7 فصول + محاكي + 22 سؤال + 10 تقييمات</p>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-black text-purple-600 dark:text-purple-400">
+                                <span data-i18n="openPortalBtn">دخول القائمة</span>
+                                <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180"></i>
+                            </span>
+                        </button>
+
+                        <!-- Solved Assessments Menu Card -->
+                        <button onclick="navigateToView('assessments')" class="group p-4 sm:p-5 rounded-3xl bg-white/95 dark:bg-slate-900/95 border-2 border-teal-200/80 dark:border-teal-800/80 hover:border-teal-500 shadow-md hover:shadow-xl text-start transition-all hover:-translate-y-1 flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="w-11 h-11 rounded-2xl bg-teal-600 text-white flex items-center justify-center text-lg shadow-md mb-3 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-file-circle-check"></i>
+                                </div>
+                                <h3 class="text-base font-black text-slate-900 dark:text-white" data-i18n="menuAssTitle">قائمة التقييمات المحلولة</h3>
+                                <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-1" data-i18n="menuAssSub">40 تقييماً وزارياً محلولاً لجميع المواد الأربع</p>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-xs font-black text-teal-600 dark:text-teal-400">
+                                <span data-i18n="openPortalBtn">دخول القائمة</span>
+                                <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4 Clean Gradient Stats Cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-6 max-w-5xl mx-auto">
+                    <div class="p-4 sm:p-5 rounded-3xl bg-gradient-to-br from-indigo-500/10 to-purple-500/10 dark:from-indigo-500/15 dark:to-purple-500/15 border border-indigo-200/70 dark:border-indigo-800/70 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <div class="text-xl sm:text-2xl font-black text-indigo-700 dark:text-indigo-300">64</div>
+                        <div class="text-xs font-extrabold text-slate-600 dark:text-slate-400" data-i18n="stat1">درساً ورواية مشروحة</div>
+                    </div>
+
+                    <div class="p-4 sm:p-5 rounded-3xl bg-gradient-to-br from-teal-500/10 to-cyan-500/10 dark:from-teal-500/15 dark:to-cyan-500/15 border border-teal-200/70 dark:border-teal-800/70 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-2xl bg-teal-600 text-white flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-check-double"></i>
+                        </div>
+                        <div class="text-xl sm:text-2xl font-black text-teal-700 dark:text-teal-300">40</div>
+                        <div class="text-xs font-extrabold text-slate-600 dark:text-slate-400" data-i18n="stat2">تقييماً وزارياً محلولاً</div>
+                    </div>
+
+                    <div class="p-4 sm:p-5 rounded-3xl bg-gradient-to-br from-emerald-500/10 to-green-500/10 dark:from-emerald-500/15 dark:to-green-500/15 border border-emerald-200/70 dark:border-emerald-800/70 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-clipboard-question"></i>
+                        </div>
+                        <div class="text-xl sm:text-2xl font-black text-emerald-700 dark:text-emerald-300">120</div>
+                        <div class="text-xs font-extrabold text-slate-600 dark:text-slate-400" data-i18n="stat3">سؤال امتحان بالتفسير</div>
+                    </div>
+
+                    <div class="p-4 sm:p-5 rounded-3xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 dark:from-amber-500/15 dark:to-orange-500/15 border border-amber-200/70 dark:border-amber-800/70 text-center">
+                        <div class="w-10 h-10 mx-auto mb-2 rounded-2xl bg-amber-600 text-white flex items-center justify-center shadow-md">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <div class="text-xl sm:text-2xl font-black text-amber-700 dark:text-amber-300">4</div>
+                        <div class="text-xs font-extrabold text-slate-600 dark:text-slate-400" data-i18n="stat4">مواد أساسية كاملة</div>
+                    </div>
+                </div>
+
+                <!-- Student Progress Tracker Bar -->
+                <div class="max-w-2xl mx-auto p-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-sm text-start">
+                    <div class="flex items-center justify-between text-xs font-extrabold mb-2">
+                        <span class="text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span data-i18n="progressLabel">نسبة إنجازك في المنهج الكامل:</span>
+                        </span>
+                        <span id="progress-text" class="text-emerald-600 dark:text-emerald-400">0 / 64 (0%)</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                        <div id="course-progress-bar" class="h-full bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-500 transition-all duration-500" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. COMPLETE 64-LESSON CURRICULUM SECTION (CLEAN CARD GRID DESIGN) -->
+        <section id="lessons" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <span class="px-3.5 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-extrabold" data-i18n="lessonsBadge">المناهج الدراسية المعتمدة • تانية بكالوريا 2026-2027</span>
+                <h2 class="text-2xl sm:text-4xl font-black mt-3 mb-2" data-i18n="lessonsTitle">شروحات الدروس والروايات (64 درساً ورواية)</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="lessonsSubtitle">اختر المادة الدراسية والوحدة لتصفح الشرح المفصل وفيديو اليوتيوب التعليمي وتسجيل إنجازك.</p>
+            </div>
+
+            <!-- Subject Tabs & Instant Search -->
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-4 mb-4">
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button onclick="switchCurriculumTab('all')" id="curr-tab-all" class="curr-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-indigo-600 text-white shadow-md transition-all">
+                        <span data-i18n="currAll">الكل (64)</span>
+                    </button>
+                    <button onclick="switchCurriculumTab('arabic')" id="curr-tab-arabic" class="curr-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all">
+                        <i class="fa-solid fa-feather-pointed text-emerald-600 me-1"></i>
+                        <span data-i18n="currArabic">اللغة العربية (17)</span>
+                    </button>
+                    <button onclick="switchCurriculumTab('english')" id="curr-tab-english" class="curr-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-sky-500 transition-all">
+                        <i class="fa-solid fa-earth-europe text-sky-600 me-1"></i>
+                        <span data-i18n="currEnglish">اللغة الإنجليزية (17)</span>
+                    </button>
+                    <button onclick="switchCurriculumTab('history')" id="curr-tab-history" class="curr-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500 transition-all">
+                        <i class="fa-solid fa-landmark-dome text-amber-600 me-1"></i>
+                        <span data-i18n="currHistory">التاريخ الوطني (23)</span>
+                    </button>
+                    <button onclick="switchCurriculumTab('prog')" id="curr-tab-prog" class="curr-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500 transition-all">
+                        <i class="fa-solid fa-laptop-code text-purple-600 me-1"></i>
+                        <span data-i18n="currProg">البرمجة والـ AI (7)</span>
+                    </button>
+                </div>
+
+                <div class="relative w-full lg:w-72">
+                    <i class="fa-solid fa-magnifying-glass absolute top-1/2 -translate-y-1/2 start-3.5 text-slate-400 text-sm"></i>
+                    <input type="text" id="lesson-search-input" oninput="filterLessonsBySearch()" placeholder="ابحث عن درس أو رواية أو وحدة..." class="w-full ps-10 pe-4 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-semibold focus:outline-none focus:border-indigo-500">
+                </div>
+            </div>
+
+            <!-- Dynamic Sub-Filters Bar -->
+            <div id="unit-subfilters" class="flex flex-wrap items-center justify-center gap-2 mb-8 p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800/80 shadow-sm"></div>
+
+            <!-- Clean 3-Column Card Grid -->
+            <div id="lessons-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- 4. SOLVED MINISTRY ASSESSMENTS SECTION (40 ASSESSMENTS: 10 PER SUBJECT) -->
+        <section id="assessments" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <span class="px-3.5 py-1 rounded-full bg-teal-100 dark:bg-teal-950 text-teal-700 dark:text-teal-300 text-xs font-extrabold" data-i18n="assBadge">التقييمات الأسبوعية والشهرية ونماذج الوزارة المحلولة</span>
+                <h2 class="text-2xl sm:text-4xl font-black mt-3 mb-2" data-i18n="assTitle">التقييمات الوزارية المحلولة (40 تقييماً)</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="assSubtitle">10 تقييمات محلولة لكل مادة (الإنجليزي، العربي، التاريخ الوطني، والبرمجة) مع إمكانية إخفاء أو إظهار الإجابات النموذجية للتدريب.</p>
+            </div>
+
+            <div class="p-4 sm:p-5 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-lg mb-8 space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="setAssessmentSubject('all')" id="ass-sub-all" class="ass-sub-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-teal-600 text-white shadow-sm transition-all">
+                            <span data-i18n="assSubAll">كل المواد (40)</span>
+                        </button>
+                        <button onclick="setAssessmentSubject('english')" id="ass-sub-english" class="ass-sub-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-100 dark:bg-slate-800 hover:bg-sky-100 dark:hover:bg-sky-950/60 transition-all">
+                            <i class="fa-solid fa-earth-europe text-sky-500 me-1"></i> <span data-i18n="assSubEng">الإنجليزي (10)</span>
+                        </button>
+                        <button onclick="setAssessmentSubject('arabic')" id="ass-sub-arabic" class="ass-sub-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-100 dark:bg-slate-800 hover:bg-emerald-100 dark:hover:bg-emerald-950/60 transition-all">
+                            <i class="fa-solid fa-feather-pointed text-emerald-500 me-1"></i> <span data-i18n="assSubArab">العربي (10)</span>
+                        </button>
+                        <button onclick="setAssessmentSubject('history')" id="ass-sub-history" class="ass-sub-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-100 dark:bg-slate-800 hover:bg-amber-100 dark:hover:bg-amber-950/60 transition-all">
+                            <i class="fa-solid fa-landmark-dome text-amber-500 me-1"></i> <span data-i18n="assSubHist">التاريخ (10)</span>
+                        </button>
+                        <button onclick="setAssessmentSubject('prog')" id="ass-sub-prog" class="ass-sub-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-100 dark:bg-slate-800 hover:bg-indigo-100 dark:hover:bg-indigo-950/60 transition-all">
+                            <i class="fa-solid fa-laptop-code text-indigo-500 me-1"></i> <span data-i18n="assSubProg">البرمجة (10)</span>
+                        </button>
+                    </div>
+
+                    <button onclick="toggleAllAssessmentAnswers()" id="ass-reveal-all-btn" class="px-4 py-2 rounded-xl bg-amber-500/15 border border-amber-500/40 text-amber-700 dark:text-amber-300 hover:bg-amber-500/25 text-xs font-black flex items-center gap-2 transition-all">
+                        <i id="ass-reveal-icon" class="fa-solid fa-eye"></i>
+                        <span id="ass-reveal-text" data-i18n="assRevealAll">إظهار جميع الإجابات النموذجية</span>
+                    </button>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-200/80 dark:border-slate-800/80">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="text-xs font-extrabold text-slate-500 dark:text-slate-400 me-1" data-i18n="assTypeLbl">النوع:</span>
+                        <button onclick="setAssessmentType('all')" id="ass-type-all" class="ass-type-btn px-3 py-1.5 rounded-lg text-xs font-extrabold bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all" data-i18n="assTypeAll">الكل</button>
+                        <button onclick="setAssessmentType('weekly')" id="ass-type-weekly" class="ass-type-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 transition-all" data-i18n="assTypeWeekly">تقييمات أسبوعية</button>
+                        <button onclick="setAssessmentType('monthly')" id="ass-type-monthly" class="ass-type-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 transition-all" data-i18n="assTypeMonthly">اختبارات شهرية</button>
+                        <button onclick="setAssessmentType('model')" id="ass-type-model" class="ass-type-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 transition-all" data-i18n="assTypeModel">نماذج الوزارة</button>
+                    </div>
+                    <input type="text" id="ass-search-input" oninput="renderAssessmentsGrid()" placeholder="ابحث في التقييمات والحلول..." class="w-full sm:w-64 px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold focus:outline-none focus:border-teal-500">
+                </div>
+            </div>
+
+            <div id="assessments-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+        </section>
+
+        <!-- 5. YOUTUBE VIDEO LIBRARY SECTION -->
+        <section id="videos" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="px-3.5 py-1 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 text-xs font-extrabold" data-i18n="vidBadge">مكتبة الفيديوهات المرئية • إشراف ياسين محمد أحمد</span>
+                <h2 class="text-2xl sm:text-4xl font-black mt-3 mb-2" data-i18n="vidTitle">شروحات الفيديو لمنهج تانية بكالوريا</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="vidSubtitle">شاهد ملخصات المواد الأربع أو الصق رابط أي فيديو تعليمي من يوتيوب لتشغيله مباشرة داخل المنصة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-xl">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-lg">
+                        <iframe id="main-yt-player" class="w-full h-full" src="https://www.youtube.com/embed/9bZkp7q19f0" title="FuturePulse Educational Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="text" id="custom-yt-url" placeholder="الصق رابط فيديو يوتيوب هنا (https://www.youtube.com/watch?v=...)" class="flex-1 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold focus:outline-none focus:border-rose-500">
+                        <button onclick="loadCustomYouTube()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors">
+                            <i class="fa-brands fa-youtube"></i>
+                            <span data-i18n="playCustomVid">تشغيل الفيديو</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="font-black text-sm text-slate-700 dark:text-slate-200 flex items-center gap-2" data-i18n="vidPlaylistTitle">
+                        <i class="fa-solid fa-list-ul text-rose-500"></i> قائمة الشروحات المختارة:
+                    </h3>
+                    <div id="video-playlist-items" class="space-y-2.5 max-h-[380px] overflow-y-auto pe-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 120-QUESTION INTERACTIVE EXAM ENGINE -->
+        <section id="quiz-hub" class="py-14 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-xs font-extrabold" data-i18n="quizHubBadge">بنك الامتحانات التفاعلي (120 سؤال بالتفسير)</span>
+                <h2 class="text-2xl sm:text-4xl font-black mt-3 mb-2" data-i18n="quizHubTitle">اختبر مستواك في جميع المواد</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="quizHubSubtitle">اختر المادة وعدد الأسئلة وفعّل عداد الوقت لتجربة امتحان حقيقية مع تصحيح فوري ومراجعة للأخطاء.</p>
+            </div>
+
+            <div id="quiz-setup-card" class="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3" data-i18n="quizSelectSub">1. اختر المادة الدراسية:</label>
+                        <div class="grid grid-cols-1 gap-2">
+                            <button onclick="selectQuizSubject('all')" id="qsub-all" class="qsub-btn p-3 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/50 text-start font-extrabold text-xs sm:text-sm flex items-center justify-between transition-all">
+                                <span data-i18n="qSubAll">امتحان شامل (جميع المواد الأربع)</span>
+                                <span class="text-xs px-2.5 py-0.5 rounded-full bg-indigo-600 text-white">120 سؤال</span>
+                            </button>
+                            <button onclick="selectQuizSubject('english')" id="qsub-english" class="qsub-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 hover:border-sky-400 text-start font-bold text-xs sm:text-sm flex items-center justify-between transition-all">
+                                <span data-i18n="qSubEnglish">اللغة الإنجليزية (12 وحدة + King Lear)</span>
+                                <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800">40 سؤال</span>
+                            </button>
+                            <button onclick="selectQuizSubject('arabic')" id="qsub-arabic" class="qsub-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 hover:border-emerald-400 text-start font-bold text-xs sm:text-sm flex items-center justify-between transition-all">
+                                <span data-i18n="qSubArabic">اللغة العربية (6 وحدات + 10 روايات)</span>
+                                <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800">32 سؤال</span>
+                            </button>
+                            <button onclick="selectQuizSubject('history')" id="qsub-history" class="qsub-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 hover:border-amber-400 text-start font-bold text-xs sm:text-sm flex items-center justify-between transition-all">
+                                <span data-i18n="qSubHistory">التاريخ الوطني (الوحدات الست)</span>
+                                <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800">26 سؤال</span>
+                            </button>
+                            <button onclick="selectQuizSubject('prog')" id="qsub-prog" class="qsub-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 hover:border-purple-400 text-start font-bold text-xs sm:text-sm flex items-center justify-between transition-all">
+                                <span data-i18n="qSubProg">البرمجة والذكاء الاصطناعي (7 فصول)</span>
+                                <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-200 dark:bg-slate-800">22 سؤال</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-between space-y-4">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3" data-i18n="quizSelectLen">2. اختر عدد الأسئلة:</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <button onclick="selectQuizLength(5)" id="qlen-5" class="qlen-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 font-extrabold text-sm text-center">5 <span class="block text-[10px] font-normal" data-i18n="qLenQuick">سريع</span></button>
+                                <button onclick="selectQuizLength(10)" id="qlen-10" class="qlen-btn p-3 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/50 font-extrabold text-sm text-center">10 <span class="block text-[10px] font-normal" data-i18n="qLenMed">متوسط</span></button>
+                                <button onclick="selectQuizLength(20)" id="qlen-20" class="qlen-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 font-extrabold text-sm text-center">20 <span class="block text-[10px] font-normal" data-i18n="qLenPro">مكثف</span></button>
+                                <button onclick="selectQuizLength(40)" id="qlen-40" class="qlen-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 font-extrabold text-sm text-center">40 <span class="block text-[10px] font-normal" data-i18n="qLenFull">شامل</span></button>
+                            </div>
+                        </div>
+
+                        <label class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 cursor-pointer">
+                            <input type="checkbox" id="quiz-timed-toggle" class="w-4 h-4 accent-indigo-600 rounded">
+                            <span class="text-xs sm:text-sm font-extrabold" data-i18n="quizTimedLabel">تفعيل عداد الوقت للامتحان (45 ثانية لكل سؤال)</span>
+                        </label>
+
+                        <button onclick="startQuiz()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-emerald-600 hover:from-indigo-700 hover:to-emerald-700 text-white font-black text-base shadow-xl shadow-indigo-500/20 flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-play"></i>
+                            <span data-i18n="quizStartNow">ابدأ الامتحان الآن</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Quiz Screen -->
+            <div id="quiz-active-card" class="hidden p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-2">
+                        <span id="quiz-q-counter" class="px-3 py-1 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-black">1 / 10</span>
+                        <span id="quiz-q-cat" class="px-3 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold">English</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span id="quiz-timer-badge" class="hidden px-3 py-1 rounded-xl bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 text-xs font-black">
+                            <i class="fa-solid fa-stopwatch me-1"></i> <span id="quiz-timer-val">07:30</span>
+                        </span>
+                        <button onclick="resetQuizUI()" class="text-xs font-bold text-slate-400 hover:text-rose-500" data-i18n="quizQuit">إنهاء</button>
+                    </div>
+                </div>
+
+                <h3 id="quiz-q-text" class="text-base sm:text-xl font-black leading-relaxed"></h3>
+                <div id="quiz-options-box" class="grid grid-cols-1 gap-3"></div>
+
+                <div id="quiz-feedback-box" class="hidden p-4 rounded-2xl bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold leading-relaxed"></div>
+
+                <div class="flex justify-end">
+                    <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm items-center gap-2">
+                        <span data-i18n="quizNext">السؤال التالي</span>
+                        <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Results Screen -->
+            <div id="quiz-result-card" class="hidden p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6 text-center">
+                <div class="w-16 h-16 mx-auto rounded-3xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-3xl">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h3 id="quiz-score-title" class="text-2xl sm:text-3xl font-black">نتيجتك: 8 / 10</h3>
+                <p id="quiz-score-msg" class="text-sm text-slate-500 dark:text-slate-400 font-bold"></p>
+
+                <div id="quiz-mistakes-wrap" class="hidden text-start space-y-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <h4 class="font-black text-sm text-rose-600 dark:text-rose-400" data-i18n="quizReviewMistakes">مراجعة الأسئلة التي أخطأت فيها:</h4>
+                    <div id="quiz-mistakes-list" class="space-y-2.5 max-h-72 overflow-y-auto"></div>
+                </div>
+
+                <button onclick="resetQuizUI()" class="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm" data-i18n="quizNewTest">امتحان جديد</button>
+            </div>
+        </section>
+
+        <!-- 7. INTERACTIVE LABS SECTION (PYTHON, ARABIC I'RAB, HISTORY TIMELINE, AI DATA LAB, FLASHCARDS & POMODORO) -->
+        <section id="interactive-lab" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="px-3.5 py-1 rounded-full bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 text-xs font-extrabold" data-i18n="labBadge">التعلم التفاعلي والتطبيقي</span>
+                <h2 class="text-2xl sm:text-4xl font-black mt-3 mb-2" data-i18n="labTitle">مختبرات وأدوات المذاكرة الذكية</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base" data-i18n="labSubtitle">جرّب محاكي Python، مختبر الإعراب والبلاغة، الخط الزمني للتاريخ، بطاقات المراجعة، ومؤقت التركيز.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Lab 1: Python & Data Cleaning Simulator -->
+                <div class="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-lg space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-black text-base sm:text-lg flex items-center gap-2">
+                            <i class="fa-brands fa-python text-indigo-500"></i>
+                            <span data-i18n="labPyTitle">محاكي Python وتنظيف البيانات</span>
+                        </h3>
+                        <select id="py-preset-select" onchange="loadPythonPreset()" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold border border-slate-200 dark:border-slate-700">
+                            <option value="clean">تنظيف البيانات (Data Cleaning)</option>
+                            <option value="ai">تصنيف الذكاء الاصطناعي (AI Score)</option>
+                            <option value="grades">حساب مجموع البكالوريا</option>
+                        </select>
+                    </div>
+                    <textarea id="py-code-input" rows="5" dir="ltr" class="w-full p-3.5 rounded-2xl bg-slate-950 text-emerald-400 font-mono text-xs leading-relaxed focus:outline-none"># تنظيف قائمة درجات الطلاب من القيم الفارغة والمكررة
+raw_scores = [95, None, 88, 95, 92, None]
+clean_scores = list(dict.fromkeys([x for x in raw_scores if x is not None]))
+print("Clean Data:", clean_scores)
+print("Average:", round(sum(clean_scores)/len(clean_scores), 2))</textarea>
+                    <div class="flex items-center justify-between gap-2">
+                        <button onclick="runPythonSimulator()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> <span data-i18n="labRunBtn">تشغيل الكود</span>
+                        </button>
+                        <span class="text-[11px] font-bold text-slate-400">Python 3.12 Sandbox</span>
+                    </div>
+                    <div id="py-output-box" dir="ltr" class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 font-mono text-xs text-slate-800 dark:text-slate-200 min-h-[54px]">
+                        >>> Ready to run...
+                    </div>
+                </div>
+
+                <!-- Lab 2: Interactive Arabic I'rab & Rhetoric Analyzer -->
+                <div class="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-lg space-y-4">
+                    <h3 class="font-black text-base sm:text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-spell-check text-emerald-500"></i>
+                        <span data-i18n="labArabTitle">مختبر الإعراب والبلاغة التفاعلي</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-bold" data-i18n="labArabHint">اضغط على أي كلمة ملونة لعرض إعرابها أو لونها البياني فوراً:</p>
+                    <div class="p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-base sm:text-lg font-extrabold leading-loose text-center">
+                        «أصبحَ
+                        <button onclick="showIrabInfo('أخوك: اسم (أصبح) مرفوع وعلامة رفعه الواو لأنه من الأسماء الخمسة، والكاف ضمير مبني في محل جر مضاف إليه.')" class="px-2 py-0.5 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 transition-colors">أخوك</button>
+                        <button onclick="showIrabInfo('ذا: خبر (أصبح) منصوب وعلامة نصبه الألف لأنه من الأسماء الخمسة بمعنى صاحب.')" class="px-2 py-0.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">ذا</button>
+                        مبادئَ ساميةٍ؛ فالعلمُ
+                        <button onclick="showIrabInfo('العلمُ نورٌ: تشبيه بليغ حيث شبّه العلم بالنور وحُذفت الأداة ووجه الشبه لتأكيد أثر العلم في الهداية.')" class="px-2 py-0.5 rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition-colors">نورٌ</button>
+                        يبدد
+                        <button onclick="showIrabInfo('ظلام الجهل: تشبيه بليغ على صورة المضاف والمضاف إليه (شبه الجهل بالظلام).')" class="px-2 py-0.5 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition-colors">ظلامَ الجهلِ</button>
+                        في وطننا
+                        <button onclick="showIrabInfo('مصرَ: بدل مطابق مجرور وعلامة جره الفتحة نيابة عن الكسرة لأنه ممنوع من الصرف (علم مؤنث).')" class="px-2 py-0.5 rounded-lg bg-rose-600 text-white hover:bg-rose-700 transition-colors">مصرَ</button>.»
+                    </div>
+                    <div id="irab-result-box" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-xs sm:text-sm font-extrabold text-indigo-700 dark:text-indigo-300 min-h-[68px] flex items-center">
+                        اختر كلمة من الجملة أعلاه لعرض التحليل النحوي والبلاغي...
+                    </div>
+                </div>
+
+                <!-- Lab 3: 3D Flip Flashcards -->
+                <div class="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-lg space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-black text-base sm:text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-clone text-amber-500"></i>
+                            <span data-i18n="labFlashTitle">بطاقات المراجعة السريعة (Flashcards)</span>
+                        </h3>
+                        <span id="flashcard-counter" class="text-xs font-extrabold text-slate-400">1 / 6</span>
+                    </div>
+                    <div onclick="flipFlashcard()" class="perspective-1000 cursor-pointer h-44">
+                        <div id="flashcard-inner" class="relative w-full h-full transition-transform duration-500 transform-style-3d">
+                            <div class="absolute inset-0 backface-hidden p-6 rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white flex flex-col items-center justify-center text-center shadow-lg">
+                                <span class="text-[10px] uppercase tracking-widest opacity-80 mb-2">اضغط لقلب البطاقة • Tap to Flip</span>
+                                <p id="flashcard-front" class="text-base sm:text-lg font-black"></p>
+                            </div>
+                            <div class="absolute inset-0 backface-hidden rotate-y-180 p-6 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 text-white flex flex-col items-center justify-center text-center shadow-lg">
+                                <span class="text-[10px] uppercase tracking-widest opacity-80 mb-2">الإجابة النموذجية</span>
+                                <p id="flashcard-back" class="text-sm sm:text-base font-extrabold leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button onclick="prevFlashcard()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-extrabold hover:bg-slate-200 dark:hover:bg-slate-700">السابق</button>
+                        <button onclick="nextFlashcard()" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-extrabold hover:bg-indigo-700">البطاقة التالية</button>
+                    </div>
+                </div>
+
+                <!-- Lab 4: Pomodoro Study Timer -->
+                <div class="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-black text-base sm:text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-rose-500"></i>
+                            <span data-i18n="labPomoTitle">مؤقت المذاكرة الذكي (Pomodoro)</span>
+                        </h3>
+                        <span class="px-2.5 py-1 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300 text-[11px] font-extrabold">+30 XP عند الإتمام</span>
+                    </div>
+                    <div class="text-center py-3">
+                        <div id="pomo-display" class="text-4xl sm:text-5xl font-black tracking-wider text-indigo-600 dark:text-indigo-400 font-mono">25:00</div>
+                        <p id="pomo-status" class="text-xs font-bold text-slate-500 dark:text-slate-400 mt-1">جلسة تركيز عميق (25 دقيقة)</p>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-center gap-2">
+                        <button onclick="startPomodoro()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold">بدء المؤقت</button>
+                        <button onclick="pausePomodoro()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-extrabold">إيقاف مؤقت</button>
+                        <button onclick="resetPomodoro()" class="px-4 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-xs font-extrabold">إعادة ضبط</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. STUDENT COMMUNITY INTERACTION WALL -->
+        <section id="community" class="py-14 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="px-3.5 py-1 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 text-xs font-extrabold" data-i18n="commBadge">التفاعل الطلابي المباشر</span>
+                <h2 class="text-2xl sm:text-4xl font-black mt-3 mb-2" data-i18n="commTitle">مجتمع طلاب تانية بكالوريا</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="commSubtitle">شارك سؤالك أو ملخصك مع زملائك وأعضاء فريق المنصة وتفاعل بالإعجاب والردود.</p>
+            </div>
+
+            <div class="p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-lg space-y-5">
+                <div class="flex flex-col sm:flex-row gap-2.5">
+                    <input type="text" id="comm-author-input" placeholder="اسمك (أو سيتم استخدام اسم حسابك)" class="sm:w-48 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold focus:outline-none focus:border-indigo-500">
+                    <input type="text" id="comm-msg-input" placeholder="اكتب سؤالاً في المنهج أو نصيحة لزملائك..." class="flex-1 px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold focus:outline-none focus:border-indigo-500">
+                    <button onclick="addCommunityPost()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shrink-0">نشر المشاركة</button>
+                </div>
+                <div id="community-posts-list" class="space-y-3"></div>
+            </div>
+        </section>
+
+        <!-- 9. PROJECT TEAM SECTION (5 MEMBERS LED BY AMMAR ASHRAF ABDELMONSEF) -->
+        <section id="team" class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+                <div class="text-center sm:text-start">
+                    <span class="px-3.5 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-extrabold" data-i18n="teamBadge">فريق العمل الطلابي</span>
+                    <h2 class="text-2xl sm:text-4xl font-black mt-2" data-i18n="teamTitle">فريق تطوير منصة نَبض المستقبل</h2>
+                </div>
+                <button onclick="openTeamEditModal()" class="px-4 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-extrabold flex items-center gap-2 shadow-md hover:opacity-90 transition-opacity">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span data-i18n="editTeamBtn">تعديل بيانات الفريق</span>
+                </button>
+            </div>
+
+            <div id="team-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5"></div>
+        </section>
+
+        <!-- 10. TECHNICAL SUPPORT & WHATSAPP CONTACT SECTION (01061367232) -->
+        <section id="support" class="py-14 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+            <div class="rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-6 sm:p-10 shadow-2xl border border-indigo-500/30 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="space-y-5">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-extrabold">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span data-i18n="supBadge">الدعم الفني وتواصل معنا</span>
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black leading-tight" data-i18n="supTitle">هل لديك استفسار في المنهج أو واجهت مشكلة؟</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed" data-i18n="supDesc">
+                        فريق دعم منصة نَبض المستقبل بقيادة عمار أشرف عبدالمنصف جاهز للرد على استفسارات الطلاب والمعلمين عبر الواتساب الرسمي أو البريد الإلكتروني.
+                    </p>
+
+                    <!-- Official WhatsApp Card: 01061367232 -->
+                    <div class="p-4 rounded-2xl bg-white/10 border border-white/15 flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-lg">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] text-emerald-300 font-bold" data-i18n="waLabel">رقم الدعم الرسمي (واتساب):</div>
+                                <div dir="ltr" class="text-lg sm:text-xl font-black tracking-wider">01061367232</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="https://wa.me/201061367232" target="_blank" rel="noopener" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black flex items-center gap-1.5 transition-colors">
+                                <i class="fa-brands fa-whatsapp"></i> <span data-i18n="waChatBtn">محادثة واتساب</span>
+                            </a>
+                            <button onclick="copySupportPhone()" class="px-3.5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-extrabold transition-colors" title="نسخ الرقم">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs text-slate-300 font-bold">
+                        <i class="fa-solid fa-envelope text-indigo-400"></i>
+                        <span>support@futurepulse.edu.eg</span>
+                    </div>
+                </div>
+
+                <!-- Direct Support Ticket Form -->
+                <form onsubmit="submitSupportForm(event)" class="p-5 sm:p-6 rounded-3xl bg-white/10 border border-white/15 space-y-3.5">
+                    <h3 class="font-black text-base sm:text-lg" data-i18n="supFormTitle">أرسل رسالة مباشرة لفريق المنصة</h3>
+                    <input type="text" id="sup-name" required placeholder="الاسم الكامل" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-white text-xs sm:text-sm font-semibold focus:outline-none focus:border-emerald-400">
+                    <input type="email" id="sup-email" required placeholder="البريد الإلكتروني (student@example.com)" class="w-full px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-white text-xs sm:text-sm font-semibold focus:outline-none focus:border-emerald-400">
+                    <textarea id="sup-msg" rows="3" required placeholder="اكتب رسالتك أو استفسارك هنا..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-white text-xs sm:text-sm font-semibold focus:outline-none focus:border-emerald-400"></textarea>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-black text-xs sm:text-sm shadow-lg transition-all">
+                        <i class="fa-solid fa-paper-plane me-1"></i> <span data-i18n="supSendBtn">إرسال الرسالة للدعم الفني</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-8 px-4 text-center space-y-2">
+        <p class="text-sm font-black text-slate-800 dark:text-slate-200">
+            نَبض المستقبل | FuturePulse — مشروع طلاب الصف الثاني الثانوي (تانية بكالوريا 2026-2027)
+        </p>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">
+            قائد الموقع: <span class="text-indigo-600 dark:text-indigo-400 font-black">عمار أشرف عبدالمنصف</span> • الفريق: أحمد محمد يحيى، أحمد محمود موسى، أنس أشرف عبدالمنصف، ياسين محمد أحمد
+        </p>
+    </footer>
+
+    <!-- LESSON READER MODAL -->
+    <div id="lesson-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl space-y-5">
+            <div class="flex items-start justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+                <div>
+                    <span id="modal-lesson-unit" class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-extrabold"></span>
+                    <h3 id="modal-lesson-title" class="text-lg sm:text-2xl font-black mt-2"></h3>
+                </div>
+                <button onclick="closeLessonModal()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-rose-100 hover:text-rose-600 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Embedded Lesson Video -->
+            <div class="aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+                <iframe id="modal-lesson-yt" class="w-full h-full" src="" title="Lesson Video" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <!-- Detailed Explanation -->
+            <div id="modal-lesson-body" class="leading-relaxed"></div>
+
+            <!-- Modal Footer Actions -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+                <button id="modal-complete-btn" onclick="toggleLessonCompleted()" class="px-5 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-extrabold flex items-center gap-2 transition-colors">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span id="modal-complete-text">تحديد الدرس كمكتمل (+25 XP)</span>
+                </button>
+                <div class="flex items-center gap-2">
+                    <button onclick="jumpToSubjectQuiz()" class="px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold">
+                        اختبر نفسك في المادة
+                    </button>
+                    <button onclick="closeLessonModal()" class="px-4 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-xs font-extrabold">
+                        إغلاق
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTHENTICATION (LOGIN / SIGNUP / PROFILE) MODAL -->
+    <div id="auth-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-5">
+            <div class="flex items-center justify-between">
+                <h3 id="auth-modal-title" class="text-xl font-black">تسجيل الدخول إلى المنصة</h3>
+                <button onclick="closeAuthModal()" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Logged-out Form -->
+            <form id="auth-form" onsubmit="submitAuthForm(event)" class="space-y-3.5">
+                <div id="auth-name-wrap" class="hidden">
+                    <label class="block text-xs font-extrabold mb-1">اسم الطالب بالكامل</label>
+                    <input type="text" id="auth-name-input" placeholder="مثال: عمار أشرف عبدالمنصف" class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold">
+                </div>
+                <div>
+                    <label class="block text-xs font-extrabold mb-1">البريد الإلكتروني</label>
+                    <input type="email" id="auth-email-input" required placeholder="student@futurepulse.edu.eg" class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold">
+                </div>
+                <div>
+                    <label class="block text-xs font-extrabold mb-1">كلمة المرور</label>
+                    <input type="password" id="auth-pass-input" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-semibold">
+                </div>
+                <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-black text-sm">دخول</button>
+                <div class="text-center text-xs font-bold text-slate-500">
+                    <button type="button" onclick="switchAuthMode()" id="auth-switch-btn" class="text-indigo-600 dark:text-indigo-400 underline">ليس لديك حساب؟ أنشئ حساب طالب جديد</button>
+                </div>
+            </form>
+
+            <!-- Logged-in Profile View -->
+            <div id="auth-profile-view" class="hidden space-y-4 text-center">
+                <div class="w-16 h-16 mx-auto rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl font-black">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <div>
+                    <h4 id="profile-user-name" class="text-lg font-black"></h4>
+                    <p id="profile-user-email" class="text-xs text-slate-500 font-bold"></p>
+                </div>
+                <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 flex justify-around text-xs font-black">
+                    <div><span class="block text-indigo-600 dark:text-indigo-400 text-base" id="profile-xp">0 XP</span>نقاط الخبرة</div>
+                    <div><span class="block text-emerald-600 dark:text-emerald-400 text-base" id="profile-done">0 / 64</span>الدروس المكتملة</div>
+                </div>
+                <button onclick="logoutUser()" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold">تسجيل الخروج</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TEAM EDIT MODAL -->
+    <div id="team-modal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                <h3 class="text-lg font-black">تعديل أسماء وأدوار فريق المشروع</h3>
+                <button onclick="closeTeamEditModal()" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="team-edit-inputs" class="space-y-3"></div>
+            <div class="flex justify-end gap-2 pt-3">
+                <button onclick="closeTeamEditModal()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-extrabold">إلغاء</button>
+                <button onclick="saveTeamMembers()" class="px-5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-extrabold">حفظ التعديلات</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. STATE & THEME / LANGUAGE INITIALIZATION
+        // ==========================================
+        let currentLang = localStorage.getItem('fp_lang') || 'ar';
+        let activePortalView = 'home';
+        let currentCurrTab = 'all';
+        let currentSubFilter = 'all';
+        let currentAssSubject = 'all';
+        let currentAssType = 'all';
+        let showAllAssAnswers = false;
+        let activeModalLesson = null;
+
+        let studentXP = parseInt(localStorage.getItem('fp_xp') || '0', 10);
+        let completedLessons = JSON.parse(localStorage.getItem('fp_completed') || '[]');
+        let currentUser = JSON.parse(localStorage.getItem('fp_user') || 'null');
+        let authMode = 'login';
+
+        // Initialize Theme (Dark / Light)
+        function initTheme() {
+            const savedTheme = localStorage.getItem('fp_theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+            document.documentElement.classList.toggle('dark', isDark);
+            updateThemeButtonUI(isDark);
+        }
+
+        function toggleTheme() {
+            const isDark = !document.documentElement.classList.contains('dark');
+            document.documentElement.classList.toggle('dark', isDark);
+            localStorage.setItem('fp_theme', isDark ? 'dark' : 'light');
+            updateThemeButtonUI(isDark);
+        }
+
+        function updateThemeButtonUI(isDark) {
+            const icon = document.getElementById('theme-icon');
+            const label = document.getElementById('theme-label');
+            if (icon) icon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-indigo-600';
+            if (label) {
+                label.textContent = currentLang === 'ar'
+                    ? (isDark ? 'الوضع الساطع' : 'الوضع الليلي')
+                    : (isDark ? 'Light Mode' : 'Dark Mode');
+            }
+        }
+
+        // Bilingual UI Dictionary
+        const i18n = {
+            ar: {
+                brandName: "نَبض المستقبل",
+                leaderShort: "عمار أشرف عبدالمنصف",
+                brandSub: "FuturePulse • تانية بكالوريا 2026-2027",
+                navHome: "الرئيسية",
+                navArabic: "اللغة العربية",
+                navEnglish: "اللغة الإنجليزية",
+                navHistory: "التاريخ الوطني",
+                navProg: "البرمجة والـ AI",
+                navLessons: "المناهج",
+                navAssessments: "التقييمات المحلولة",
+                navQuiz: "الامتحانات",
+                navLab: "المختبرات",
+                navTeam: "الفريق",
+                navSupport: "الدعم",
+                navLogin: "تسجيل الدخول",
+                backHomeBtn: "العودة للقائمة الرئيسية",
+                portalJumpLessons: "دروس المادة",
+                portalJumpQuiz: "امتحانات المادة",
+                portalJumpAss: "التقييمات المحلولة",
+                menusHeading: "قوائم المواد الدراسية والتقييمات (اضغط لفتح واجهة المادة):",
+                menuArabTitle: "قائمة اللغة العربية",
+                menuArabSub: "6 وحدات + 10 روايات + 32 سؤال + 10 تقييمات",
+                menuEngTitle: "قائمة اللغة الإنجليزية",
+                menuEngSub: "12 وحدة + King Lear + 40 سؤال + 10 تقييمات",
+                menuHistTitle: "قائمة التاريخ الوطني",
+                menuHistSub: "6 وحدات (23 درساً) + 26 سؤال + 10 تقييمات",
+                menuProgTitle: "قائمة البرمجة والـ AI",
+                menuProgSub: "7 فصول + محاكي + 22 سؤال + 10 تقييمات",
+                menuAssTitle: "قائمة التقييمات المحلولة",
+                menuAssSub: "40 تقييماً وزارياً محلولاً لجميع المواد الأربع",
+                openPortalBtn: "دخول القائمة",
+                heroBadge: "منصة طلاب تانية بكالوريا 2026-2027 • عربي / English",
+                heroLeader: "قائد الموقع: عمار أشرف عبدالمنصف",
+                heroTitle1: "بوابتك الذكية للتفوق في",
+                heroTitle2: "تانية بكالوريا",
+                heroTitle3: "بشرح تفاعلي متكامل",
+                heroDesc: "منصة تعليمية جماعية تجمع مناهج الوزارة الكاملة (اللغة العربية بـ 6 وحدات و10 روايات، اللغة الإنجليزية للترمين 1 و 2 + مسرحية King Lear، التاريخ الوطني، والبرمجة والذكاء الاصطناعي) مع 40 تقييماً وزارياً محلولاً وبنك 120 سؤال امتحان.",
+                ctaLessons: "اختر قائمة المادة الدراسية",
+                ctaAssessments: "قائمة التقييمات المحلولة (40)",
+                ctaQuiz: "الامتحانات الشاملة (120 سؤال)",
+                assRevealAll: "إظهار جميع الإجابات النموذجية",
+                assHideAll: "إخفاء الإجابات (وضع التدريب)",
+                assTypeLbl: "النوع:",
+                assTypeAll: "الكل",
+                assTypeWeekly: "تقييمات أسبوعية",
+                assTypeMonthly: "اختبارات شهرية",
+                assTypeModel: "نماذج الوزارة",
+                vidBadge: "مكتبة الفيديوهات المرئية • إشراف ياسين محمد أحمد",
+                vidTitle: "شروحات الفيديو لمنهج تانية بكالوريا",
+                vidSubtitle: "شاهد ملخصات المواد الأربع أو الصق رابط أي فيديو تعليمي من يوتيوب لتشغيله مباشرة داخل المنصة.",
+                playCustomVid: "تشغيل الفيديو",
+                vidPlaylistTitle: "قائمة الشروحات المختارة:",
+                quizHubBadge: "بنك الامتحانات التفاعلي (120 سؤال بالتفسير)",
+                quizHubTitle: "اختبر مستواك في جميع المواد",
+                quizHubSubtitle: "اختر المادة وعدد الأسئلة وفعّل عداد الوقت لتجربة امتحان حقيقية مع تصحيح فوري ومراجعة للأخطاء.",
+                quizSelectSub: "1. اختر المادة الدراسية:",
+                qSubAll: "امتحان شامل (جميع المواد الأربع)",
+                qSubEnglish: "اللغة الإنجليزية (12 وحدة + King Lear)",
+                qSubArabic: "اللغة العربية (6 وحدات + 10 روايات)",
+                qSubHistory: "التاريخ الوطني (الوحدات الست)",
+                qSubProg: "البرمجة والذكاء الاصطناعي (7 فصول)",
+                quizSelectLen: "2. اختر عدد الأسئلة:",
+                qLenQuick: "سريع",
+                qLenMed: "متوسط",
+                qLenPro: "مكثف",
+                qLenFull: "شامل",
+                quizTimedLabel: "تفعيل عداد الوقت للامتحان (45 ثانية لكل سؤال)",
+                quizStartNow: "ابدأ الامتحان الآن",
+                quizQuit: "إنهاء",
+                quizNext: "السؤال التالي",
+                quizReviewMistakes: "مراجعة الأسئلة التي أخطأت فيها:",
+                quizNewTest: "امتحان جديد",
+                labBadge: "التعلم التفاعلي والتطبيقي",
+                labTitle: "مختبرات وأدوات المذاكرة الذكية",
+                labSubtitle: "جرّب محاكي Python، مختبر الإعراب والبلاغة، بطاقات المراجعة، ومؤقت التركيز.",
+                labPyTitle: "محاكي Python وتنظيف البيانات",
+                labRunBtn: "تشغيل الكود",
+                labArabTitle: "مختبر الإعراب والبلاغة التفاعلي",
+                labArabHint: "اضغط على أي كلمة ملونة لعرض إعرابها أو لونها البياني فوراً:",
+                labFlashTitle: "بطاقات المراجعة السريعة (Flashcards)",
+                labPomoTitle: "مؤقت المذاكرة الذكي (Pomodoro)",
+                commBadge: "التفاعل الطلابي المباشر",
+                commTitle: "مجتمع طلاب تانية بكالوريا",
+                commSubtitle: "شارك سؤالك أو ملخصك مع زملائك وأعضاء فريق المنصة وتفاعل بالإعجاب والردود.",
+                teamBadge: "فريق العمل الطلابي",
+                teamTitle: "فريق تطوير منصة نَبض المستقبل",
+                editTeamBtn: "تعديل بيانات الفريق",
+                supBadge: "الدعم الفني وتواصل معنا",
+                supTitle: "هل لديك استفسار في المنهج أو واجهت مشكلة؟",
+                supDesc: "فريق دعم منصة نَبض المستقبل بقيادة عمار أشرف عبدالمنصف جاهز للرد على استفسارات الطلاب والمعلمين عبر الواتساب الرسمي أو البريد الإلكتروني.",
+                waLabel: "رقم الدعم الرسمي (واتساب):",
+                waChatBtn: "محادثة واتساب",
+                supFormTitle: "أرسل رسالة مباشرة لفريق المنصة",
+                supSendBtn: "إرسال الرسالة للدعم الفني"
+            },
+            en: {
+                brandName: "FuturePulse",
+                leaderShort: "Ammar Ashraf Abdelmonsef",
+                brandSub: "Egyptian Baccalaureate Grade 11 • 2026-2027",
+                navHome: "Home",
+                navArabic: "Arabic",
+                navEnglish: "English",
+                navHistory: "History",
+                navProg: "Programming & AI",
+                navLessons: "Curriculum",
+                navAssessments: "Solved Assessments",
+                navQuiz: "Exams",
+                navLab: "Labs",
+                navTeam: "Team",
+                navSupport: "Support",
+                navLogin: "Login",
+                backHomeBtn: "Back to Main Menu",
+                portalJumpLessons: "Subject Lessons",
+                portalJumpQuiz: "Subject Exams",
+                portalJumpAss: "Solved Assessments",
+                menusHeading: "Subject Menus & Assessments (Click to open subject interface):",
+                menuArabTitle: "Arabic Language Menu",
+                menuArabSub: "6 Units + 10 Novels + 32 Qs + 10 Assessments",
+                menuEngTitle: "English Language Menu",
+                menuEngSub: "12 Units + King Lear + 40 Qs + 10 Assessments",
+                menuHistTitle: "National History Menu",
+                menuHistSub: "6 Units (23 Lessons) + 26 Qs + 10 Assessments",
+                menuProgTitle: "Programming & AI Menu",
+                menuProgSub: "7 Chapters + Lab + 22 Qs + 10 Assessments",
+                menuAssTitle: "Solved Assessments Menu",
+                menuAssSub: "40 Solved Ministry Assessments for All 4 Subjects",
+                openPortalBtn: "Open Menu",
+                heroBadge: "Grade 11 Egyptian Baccalaureate 2026-2027 • AR / EN",
+                heroLeader: "Site Leader: Ammar Ashraf Abdelmonsef",
+                heroTitle1: "Your Smart Gateway to Excel in",
+                heroTitle2: "2nd Year Baccalaureate",
+                heroTitle3: "with Interactive Learning",
+                heroDesc: "A collaborative educational platform covering all official Ministry textbooks (Arabic 6 Units + 10 Novels, English Terms 1 & 2 + King Lear, National History, and Programming & AI) with 40 solved assessments and 120 interactive exam questions.",
+                ctaLessons: "Choose Subject Menu",
+                ctaAssessments: "Solved Assessments Menu (40)",
+                ctaQuiz: "Comprehensive Exams (120 Qs)",
+                assRevealAll: "Show All Model Answers",
+                assHideAll: "Hide Answers (Practice Mode)",
+                assTypeLbl: "Type:",
+                assTypeAll: "All",
+                assTypeWeekly: "Weekly Tasks",
+                assTypeMonthly: "Monthly Tests",
+                assTypeModel: "Ministry Models",
+                vidBadge: "Video Library • Curated by Yassin Mohamed Ahmed",
+                vidTitle: "Grade 11 Baccalaureate Video Tutorials",
+                vidSubtitle: "Watch curated curriculum summaries or paste any YouTube educational link to play directly inside the platform.",
+                playCustomVid: "Play Video",
+                vidPlaylistTitle: "Curated Curriculum Playlist:",
+                quizHubBadge: "Interactive Exam Bank (120 Explained Qs)",
+                quizHubTitle: "Test Yourself Across All Subjects",
+                quizHubSubtitle: "Select your subject, question count, and optional timer for a realistic exam experience with instant explanations.",
+                quizSelectSub: "1. Choose Subject:",
+                qSubAll: "Comprehensive Exam (All 4 Subjects)",
+                qSubEnglish: "English Language (12 Units + King Lear)",
+                qSubArabic: "Arabic Language (6 Units + 10 Novels)",
+                qSubHistory: "National History (All 6 Units)",
+                qSubProg: "Programming & AI (All 7 Chapters)",
+                quizSelectLen: "2. Choose Question Count:",
+                qLenQuick: "Quick",
+                qLenMed: "Medium",
+                qLenPro: "Intense",
+                qLenFull: "Full",
+                quizTimedLabel: "Enable Exam Countdown Timer (45 sec/question)",
+                quizStartNow: "Start Exam Now",
+                quizQuit: "Quit",
+                quizNext: "Next Question",
+                quizReviewMistakes: "Review your mistakes:",
+                quizNewTest: "New Exam",
+                labBadge: "Hands-On Interactive Learning",
+                labTitle: "Smart Study Labs & Tools",
+                labSubtitle: "Try the Python & Data Cleaning Sandbox, Arabic I'rab Analyzer, Flashcards, and Pomodoro Timer.",
+                labPyTitle: "Python & Data Cleaning Simulator",
+                labRunBtn: "Run Code",
+                labArabTitle: "Interactive Arabic Grammar & Rhetoric Lab",
+                labArabHint: "Click any highlighted word to view its grammatical parsing or rhetorical figure:",
+                labFlashTitle: "Quick Revision Flashcards",
+                labPomoTitle: "Smart Pomodoro Focus Timer",
+                commBadge: "Live Student Interaction",
+                commTitle: "Grade 11 Baccalaureate Community",
+                commSubtitle: "Share your questions or study tips with classmates and platform leaders.",
+                teamBadge: "Student Project Team",
+                teamTitle: "FuturePulse Platform Team",
+                editTeamBtn: "Edit Team Info",
+                supBadge: "Technical Support & Contact",
+                supTitle: "Have a curriculum question or need technical help?",
+                supDesc: "The FuturePulse support team led by Ammar Ashraf Abdelmonsef is ready to assist students and teachers via official WhatsApp or email.",
+                waLabel: "Official Support WhatsApp:",
+                waChatBtn: "Chat on WhatsApp",
+                supFormTitle: "Send a Direct Support Message",
+                supSendBtn: "Send Support Message"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('fp_lang', currentLang);
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('lang-btn-text').textContent = currentLang === 'ar' ? 'English' : 'العربية';
+            updateThemeButtonUI(document.documentElement.classList.contains('dark'));
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[currentLang][key]) el.textContent = i18n[currentLang][key];
+            });
+
+            renderSubFilters();
+            renderLessonsGrid();
+            renderAssessmentsGrid();
+            renderVideoPlaylist();
+            renderFlashcard();
+            renderCommunityPosts();
+            renderTeamCards();
+            updateAuthUI();
+        }
+
+        // ==========================================
+        // 5. DEDICATED SUBJECT PORTAL NAVIGATION & CURRICULUM RENDERING
+        // ==========================================
+        const portalConfigs = {
+            arabic: {
+                gradient: "from-emerald-600 to-teal-700",
+                title: { ar: "قائمة وواجهة اللغة العربية (17 درساً ورواية)", en: "Arabic Language Portal (17 Lessons & Novels)" },
+                desc: { ar: "تصفح الوحدات الست كاملة (النحو، البلاغة، الأدب، النصوص) وكتاب القصة والروايات العشر، مع امتحانات اللغة العربية الفورية (32 سؤالاً) وتقييماتها المحلولة.", en: "Explore all 6 official units + 10 novels, instant Arabic exams (32 Qs), and 10 solved ministry assessments." }
+            },
+            english: {
+                gradient: "from-sky-600 to-indigo-700",
+                title: { ar: "قائمة وواجهة اللغة الإنجليزية (12 وحدة + King Lear)", en: "English Language Portal (12 Units + King Lear)" },
+                desc: { ar: "تصفح وحدات الترم الأول (1–6) والترم الثاني (7–12) ومسرحية King Lear كاملة الفصول (Acts 1–5)، مع امتحانات الإنجليزي (40 سؤالاً) والتقييمات المحلولة.", en: "Explore Term 1 & 2 units + King Lear Acts 1–5, instant English exams (40 Qs), and 10 solved assessments." }
+            },
+            history: {
+                gradient: "from-amber-600 to-orange-700",
+                title: { ar: "قائمة وواجهة التاريخ الوطني (6 وحدات / 23 درساً)", en: "National History Portal (6 Units / 23 Lessons)" },
+                desc: { ar: "تصفح منهج التاريخ الوطني المصري كاملاً بجزأيه الأول والثاني، مع امتحانات التاريخ الفورية (26 سؤالاً) والتقييمات الوزارية المحلولة.", en: "Explore all 23 National History lessons across Parts 1 & 2, instant History exams (26 Qs), and 10 solved assessments." }
+            },
+            prog: {
+                gradient: "from-purple-600 to-indigo-700",
+                title: { ar: "قائمة وواجهة البرمجة والذكاء الاصطناعي (7 فصول)", en: "Programming & AI Portal (7 Connected Chapters)" },
+                desc: { ar: "تصفح الفصول السبعة المترابطة (IT، الأمن السيبراني، تطبيقات الويب، البيانات، والذكاء الاصطناعي التوليدي) مع المحاكي التفاعلي وامتحانات المادة (22 سؤالاً).", en: "Explore all 7 connected chapters, Python Data Cleaning Lab, instant exams (22 Qs), and 10 solved assessments." }
+            },
+            assessments: {
+                gradient: "from-teal-600 to-emerald-700",
+                title: { ar: "قائمة التقييمات الوزارية المحلولة الشاملة (40 تقييماً)", en: "All Solved Ministry Assessments Portal (40 Assessments)" },
+                desc: { ar: "موسوعة التقييمات الأسبوعية والاختبارات الشهرية ونماذج الوزارة الاسترشادية محلولة بالكامل لجميع المواد الأربع مع إمكانية إخفاء الإجابات للتدريب الذاتي.", en: "Complete collection of 40 solved weekly, monthly, and Ministry model assessments across all 4 subjects." }
+            }
+        };
+
+        function navigateToView(view) {
+            activePortalView = view;
+
+            // Update top navbar active button style
+            document.querySelectorAll('.nav-view-btn').forEach(btn => {
+                btn.className = "nav-view-btn px-3 py-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-all";
+            });
+            const activeNav = document.getElementById(`nav-btn-${view}`);
+            if (activeNav) {
+                activeNav.className = "nav-view-btn px-3 py-2 rounded-xl bg-indigo-600 text-white shadow-sm transition-all";
+            }
+
+            const heroSec = document.getElementById('hero-section');
+            const portalHeader = document.getElementById('subject-portal-header');
+            const lessonsSec = document.getElementById('lessons');
+            const assSec = document.getElementById('assessments');
+            const videosSec = document.getElementById('videos');
+            const quizSec = document.getElementById('quiz-hub');
+            const labSec = document.getElementById('interactive-lab');
+            const commSec = document.getElementById('community');
+            const teamSec = document.getElementById('team');
+
+            if (view === 'home') {
+                heroSec.classList.remove('hidden');
+                portalHeader.classList.add('hidden');
+                lessonsSec.classList.remove('hidden');
+                assSec.classList.remove('hidden');
+                videosSec.classList.remove('hidden');
+                quizSec.classList.remove('hidden');
+                labSec.classList.remove('hidden');
+                commSec.classList.remove('hidden');
+                teamSec.classList.remove('hidden');
+
+                switchCurriculumTab('all');
+                setAssessmentSubject('all');
+                selectQuizSubject('all');
+            } else {
+                heroSec.classList.add('hidden');
+                portalHeader.classList.remove('hidden');
+                const cfg = portalConfigs[view];
+                const bannerCard = document.getElementById('portal-banner-card');
+                bannerCard.className = `p-6 sm:p-8 rounded-3xl bg-gradient-to-r ${cfg.gradient} text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4`;
+                document.getElementById('portal-banner-title').textContent = cfg.title[currentLang];
+                document.getElementById('portal-banner-desc').textContent = cfg.desc[currentLang];
+
+                if (view === 'assessments') {
+                    lessonsSec.classList.add('hidden');
+                    videosSec.classList.add('hidden');
+                    quizSec.classList.add('hidden');
+                    labSec.classList.add('hidden');
+                    commSec.classList.add('hidden');
+                    teamSec.classList.add('hidden');
+                    assSec.classList.remove('hidden');
+                    setAssessmentSubject('all');
+                } else {
+                    // Dedicated Subject View (arabic | english | history | prog)
+                    lessonsSec.classList.remove('hidden');
+                    assSec.classList.remove('hidden');
+                    quizSec.classList.remove('hidden');
+                    videosSec.classList.add('hidden');
+                    labSec.classList.toggle('hidden', view !== 'prog' && view !== 'arabic');
+                    commSec.classList.add('hidden');
+                    teamSec.classList.add('hidden');
+
+                    switchCurriculumTab(view);
+                    setAssessmentSubject(view);
+                    selectQuizSubject(view);
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function switchCurriculumTab(tab) {
+            currentCurrTab = tab;
+            currentSubFilter = 'all';
+            document.querySelectorAll('.curr-tab').forEach(btn => {
+                btn.className = "curr-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all";
+            });
+            document.getElementById(`curr-tab-${tab}`).className = "curr-tab px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold bg-indigo-600 text-white shadow-md transition-all";
+            renderSubFilters();
+            renderLessonsGrid();
+        }
+
+        function setSubFilter(key) {
+            currentSubFilter = key;
+            renderSubFilters();
+            renderLessonsGrid();
+        }
+
+        function renderSubFilters() {
+            const bar = document.getElementById('unit-subfilters');
+            if (!bar) return;
+            const list = subUnitsMap[currentCurrTab] || subUnitsMap.all;
+            bar.innerHTML = list.map(item => {
+                const active = currentSubFilter === item.key;
+                return `<button onclick="setSubFilter('${item.key}')" class="px-3 py-1.5 rounded-xl text-xs font-extrabold transition-all ${active ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-indigo-100 dark:hover:bg-indigo-950'}">${item.label[currentLang]}</button>`;
+            }).join('');
+        }
+
+        function filterLessonsBySearch() {
+            renderLessonsGrid();
+        }
+
+        function renderLessonsGrid() {
+            const grid = document.getElementById('lessons-grid');
+            if (!grid) return;
+            const query = (document.getElementById('lesson-search-input')?.value || '').trim().toLowerCase();
+
+            const filtered = lessonsDB.filter(l => {
+                const matchTab = currentCurrTab === 'all' || l.subject === currentCurrTab;
+                const matchSub = currentSubFilter === 'all' || (l.subTags && l.subTags.includes(currentSubFilter));
+                const matchQuery = !query ||
+                    l.title.ar.toLowerCase().includes(query) ||
+                    l.title.en.toLowerCase().includes(query) ||
+                    l.summary.ar.toLowerCase().includes(query) ||
+                    l.summary.en.toLowerCase().includes(query) ||
+                    l.unit.ar.toLowerCase().includes(query);
+                return matchTab && matchSub && matchQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-10 text-slate-500 font-bold">${currentLang === 'ar' ? 'لا توجد دروس مطابقة لبحثك.' : 'No matching lessons found.'}</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(lesson => {
+                const isDone = completedLessons.includes(lesson.id);
+                const badgeStyle = lesson.subject === 'arabic'
+                    ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+                    : lesson.subject === 'english'
+                    ? 'bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300'
+                    : lesson.subject === 'history'
+                    ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
+                    : 'bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300';
+
+                return `
+                    <div class="group p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border ${isDone ? 'border-emerald-400 dark:border-emerald-600' : 'border-slate-200 dark:border-slate-800'} shadow-md hover:shadow-xl transition-all flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="px-3 py-1 rounded-full text-[11px] font-extrabold ${badgeStyle}">${lesson.unit[currentLang]}</span>
+                                ${isDone ? `<span class="text-emerald-600 dark:text-emerald-400 text-xs font-black"><i class="fa-solid fa-circle-check"></i></span>` : `<i class="${lesson.icon} text-slate-400 group-hover:text-indigo-500 transition-colors"></i>`}
+                            </div>
+                            <h3 class="text-base sm:text-lg font-black leading-snug group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${lesson.title[currentLang]}</h3>
+                            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">${lesson.summary[currentLang]}</p>
+                        </div>
+                        <button onclick="openLessonModal('${lesson.id}')" class="w-full py-2.5 px-4 rounded-2xl bg-slate-100 dark:bg-slate-800 group-hover:bg-indigo-600 group-hover:text-white text-xs font-extrabold flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span>${currentLang === 'ar' ? 'فتح الشرح والفيديو' : 'Open Lesson & Video'}</span>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openLessonModal(lessonId) {
+            const lesson = lessonsDB.find(l => l.id === lessonId);
+            if (!lesson) return;
+            activeModalLesson = lesson;
+            document.getElementById('modal-lesson-unit').textContent = lesson.unit[currentLang];
+            document.getElementById('modal-lesson-title').textContent = lesson.title[currentLang];
+            document.getElementById('modal-lesson-body').innerHTML = lesson.content[currentLang];
+            document.getElementById('modal-lesson-yt').src = `https://www.youtube.com/embed/${lesson.ytId}`;
+
+            const isDone = completedLessons.includes(lesson.id);
+            document.getElementById('modal-complete-text').textContent = isDone
+                ? (currentLang === 'ar' ? 'تم إكمال الدرس ✓' : 'Lesson Completed ✓')
+                : (currentLang === 'ar' ? 'تحديد الدرس كمكتمل (+25 XP)' : 'Mark as Completed (+25 XP)');
+
+            document.getElementById('lesson-modal').classList.remove('hidden');
+        }
+
+        function closeLessonModal() {
+            document.getElementById('lesson-modal').classList.add('hidden');
+            document.getElementById('modal-lesson-yt').src = '';
+        }
+
+        function toggleLessonCompleted() {
+            if (!activeModalLesson) return;
+            if (!completedLessons.includes(activeModalLesson.id)) {
+                completedLessons.push(activeModalLesson.id);
+                localStorage.setItem('fp_completed', JSON.stringify(completedLessons));
+                addXP(25);
+                showToast(currentLang === 'ar' ? 'أحسنت! تم تسجيل إتمام الدرس (+25 XP)' : 'Great job! Lesson completed (+25 XP)');
+            }
+            updateProgressUI();
+            renderLessonsGrid();
+            document.getElementById('modal-complete-text').textContent = currentLang === 'ar' ? 'تم إكمال الدرس ✓' : 'Lesson Completed ✓';
+        }
+
+        function jumpToSubjectQuiz() {
+            if (!activeModalLesson) return;
+            const sub = activeModalLesson.subject;
+            closeLessonModal();
+            selectQuizSubject(sub);
+            document.getElementById('quiz-hub').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateProgressUI() {
+            const total = lessonsDB.length;
+            const count = completedLessons.length;
+            const pct = Math.round((count / total) * 100);
+            document.getElementById('progress-text').textContent = `${count} / ${total} (${pct}%)`;
+            document.getElementById('course-progress-bar').style.width = `${pct}%`;
+            document.getElementById('xp-display').textContent = `${studentXP} XP`;
+        }
+
+        function addXP(points) {
+            studentXP += points;
+            localStorage.setItem('fp_xp', String(studentXP));
+            updateProgressUI();
+        }
+
+        // ==========================================
+        // 6. SOLVED ASSESSMENTS RENDERING
+        // ==========================================
+        function setAssessmentSubject(sub) {
+            currentAssSubject = sub;
+            document.querySelectorAll('.ass-sub-btn').forEach(btn => {
+                btn.className = "ass-sub-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-slate-100 dark:bg-slate-800 hover:bg-teal-100 dark:hover:bg-teal-950/60 transition-all";
+            });
+            document.getElementById(`ass-sub-${sub}`).className = "ass-sub-btn px-3.5 py-2 rounded-xl text-xs font-extrabold bg-teal-600 text-white shadow-sm transition-all";
+            renderAssessmentsGrid();
+        }
+
+        function setAssessmentType(type) {
+            currentAssType = type;
+            document.querySelectorAll('.ass-type-btn').forEach(btn => {
+                btn.className = "ass-type-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 transition-all";
+            });
+            document.getElementById(`ass-type-${type}`).className = "ass-type-btn px-3 py-1.5 rounded-lg text-xs font-extrabold bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all";
+            renderAssessmentsGrid();
+        }
+
+        function toggleAllAssessmentAnswers() {
+            showAllAssAnswers = !showAllAssAnswers;
+            document.getElementById('ass-reveal-icon').className = showAllAssAnswers ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+            document.getElementById('ass-reveal-text').textContent = showAllAssAnswers ? i18n[currentLang].assHideAll : i18n[currentLang].assRevealAll;
+            renderAssessmentsGrid();
+        }
+
+        function toggleSingleAssAnswer(ansId, btnEl) {
+            const box = document.getElementById(ansId);
+            if (!box) return;
+            const isHidden = box.classList.contains('hidden');
+            box.classList.toggle('hidden');
+            if (isHidden) {
+                addXP(5);
+                btnEl.innerHTML = `<i class="fa-solid fa-eye-slash"></i> <span>${currentLang === 'ar' ? 'إخفاء الإجابة' : 'Hide Answer'}</span>`;
+            } else {
+                btnEl.innerHTML = `<i class="fa-solid fa-lightbulb"></i> <span>${currentLang === 'ar' ? 'عرض الإجابة النموذجية' : 'Show Model Answer'}</span>`;
+            }
+        }
+
+        function renderAssessmentsGrid() {
+            const grid = document.getElementById('assessments-grid');
+            if (!grid) return;
+            const query = (document.getElementById('ass-search-input')?.value || '').trim().toLowerCase();
+
+            const filtered = assessmentsDB.filter(a => {
+                const matchSub = currentAssSubject === 'all' || a.subject === currentAssSubject;
+                const matchType = currentAssType === 'all' || a.type === currentAssType;
+                const matchQuery = !query ||
+                    a.title.ar.toLowerCase().includes(query) ||
+                    a.title.en.toLowerCase().includes(query) ||
+                    a.questions.some(q => q.q.ar.toLowerCase().includes(query) || q.ans.ar.toLowerCase().includes(query));
+                return matchSub && matchType && matchQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-8 text-slate-500 font-bold">${currentLang === 'ar' ? 'لا توجد تقييمات مطابقة لبحثك.' : 'No matching assessments found.'}</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(ass => {
+                const pillColor = ass.subject === 'english'
+                    ? 'bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300'
+                    : ass.subject === 'arabic'
+                    ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300'
+                    : ass.subject === 'history'
+                    ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
+                    : 'bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300';
+
+                const questionsHTML = ass.questions.map((item, qIdx) => {
+                    const ansId = `${ass.id}-ans-${qIdx}`;
+                    return `
+                        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80 space-y-2">
+                            <p class="text-xs sm:text-sm font-extrabold leading-relaxed">${item.q[currentLang]}</p>
+                            <button onclick="toggleSingleAssAnswer('${ansId}', this)" class="px-3 py-1.5 rounded-xl bg-teal-600/10 hover:bg-teal-600/20 text-teal-700 dark:text-teal-300 text-xs font-extrabold inline-flex items-center gap-1.5 transition-colors">
+                                <i class="fa-solid ${showAllAssAnswers ? 'fa-eye-slash' : 'fa-lightbulb'}"></i>
+                                <span>${showAllAssAnswers ? (currentLang === 'ar' ? 'إخفاء الإجابة' : 'Hide Answer') : (currentLang === 'ar' ? 'عرض الإجابة النموذجية (+5 XP)' : 'Show Model Answer (+5 XP)')}</span>
+                            </button>
+                            <div id="${ansId}" class="${showAllAssAnswers ? '' : 'hidden'} p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-300/70 dark:border-emerald-800 text-xs sm:text-sm text-emerald-900 dark:text-emerald-200 font-semibold whitespace-pre-line leading-relaxed">
+                                ${item.ans[currentLang]}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                return `
+                    <div class="p-5 sm:p-6 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-extrabold ${pillColor}">${ass.badge[currentLang]}</span>
+                            <span class="text-[11px] font-bold text-slate-400">${ass.questions.length} ${currentLang === 'ar' ? 'أسئلة محلولة' : 'Solved Qs'}</span>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-black leading-snug">${ass.title[currentLang]}</h3>
+                        <div class="space-y-3">${questionsHTML}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==========================================
+        // 7. VIDEO LIBRARY PLAYER
+        // ==========================================
+        const videoPlaylist = [
+            { id: "9bZkp7q19f0", cat: { ar: "اللغة الإنجليزية • 12 وحدة + King Lear", en: "English • 12 Units + King Lear" }, title: { ar: "مراجعة شاملة لمنهج اللغة الإنجليزية للترمين ومسرحية King Lear", en: "Complete English Curriculum & King Lear Review" } },
+            { id: "3w6t1n3x0fM", cat: { ar: "اللغة العربية • النحو والنصوص", en: "Arabic • Grammar & Texts" }, title: { ar: "شرح الأسماء الخمسة والممنوع من الصرف والتوابع ونص غربة وحنين", en: "Arabic Units 1–6 Grammar & Literature" } },
+            { id: "z1X4cV7b9nM", cat: { ar: "اللغة العربية • كتاب القصة", en: "Arabic • 10 Novels" }, title: { ar: "ملخص الروايات العشر المقررة في منهج تانية بكالوريا", en: "Summary of All 10 Official Novels" } },
+            { id: "q9W3eR7t5yU", cat: { ar: "التاريخ الوطني • الوحدات 1–6", en: "National History • Units 1–6" }, title: { ar: "شرح التاريخ الوطني المصري وحرب أكتوبر 1973 واستعادة طابا", en: "National History & October 1973 Victory" } },
+            { id: "ukzFI9rgwfU", cat: { ar: "البرمجة والذكاء الاصطناعي", en: "Programming & AI" }, title: { ar: "شرح الفصول 1–7: أمن المعلومات، البيانات، والذكاء الاصطناعي التوليدي", en: "Chapters 1–7: Security, Data & Generative AI" } }
+        ];
+
+        function renderVideoPlaylist() {
+            const box = document.getElementById('video-playlist-items');
+            if (!box) return;
+            box.innerHTML = videoPlaylist.map(v => `
+                <button onclick="document.getElementById('main-yt-player').src='https://www.youtube.com/embed/${v.id}'" class="w-full text-start p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/80 hover:bg-rose-50 dark:hover:bg-rose-950/50 border border-slate-200 dark:border-slate-700 transition-all space-y-1">
+                    <span class="text-[10px] font-extrabold text-rose-600 dark:text-rose-400 block">${v.cat[currentLang]}</span>
+                    <span class="text-xs font-extrabold leading-snug block">${v.title[currentLang]}</span>
+                </button>
+            `).join('');
+        }
+
+        function loadCustomYouTube() {
+            const url = (document.getElementById('custom-yt-url')?.value || '').trim();
+            const match = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+            if (match && match[1]) {
+                document.getElementById('main-yt-player').src = `https://www.youtube.com/embed/${match[1]}`;
+                showToast(currentLang === 'ar' ? 'تم تشغيل الفيديو بنجاح!' : 'Video loaded!');
+            } else {
+                showToast(currentLang === 'ar' ? 'يرجى إدخال رابط يوتيوب صحيح' : 'Please enter a valid YouTube URL', true);
+            }
+        }
+
+        // ==========================================
+        // 8. 120-QUESTION QUIZ ENGINE
+        // ==========================================
+        let selectedQuizSub = 'all';
+        let selectedQuizLen = 10;
+        let activeQuestions = [];
+        let currentQIndex = 0;
+        let quizScore = 0;
+        let quizMistakes = [];
+        let quizTimerInterval = null;
+        let quizSecondsLeft = 0;
+
+        function selectQuizSubject(sub) {
+            selectedQuizSub = sub;
+            document.querySelectorAll('.qsub-btn').forEach(btn => {
+                btn.className = "qsub-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-start font-bold text-xs sm:text-sm flex items-center justify-between transition-all";
+            });
+            document.getElementById(`qsub-${sub}`).className = "qsub-btn p-3 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/50 text-start font-extrabold text-xs sm:text-sm flex items-center justify-between transition-all";
+        }
+
+        function selectQuizLength(len) {
+            selectedQuizLen = len;
+            document.querySelectorAll('.qlen-btn').forEach(btn => {
+                btn.className = "qlen-btn p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-800 font-extrabold text-sm text-center";
+            });
+            document.getElementById(`qlen-${len}`).className = "qlen-btn p-3 rounded-2xl border-2 border-indigo-600 bg-indigo-50/70 dark:bg-indigo-950/50 font-extrabold text-sm text-center";
+        }
+
+        function startQuiz() {
+            const pool = selectedQuizSub === 'all' ? [...quizBank] : quizBank.filter(q => q.subject === selectedQuizSub);
+            pool.sort(() => Math.random() - 0.5);
+            activeQuestions = pool.slice(0, Math.min(selectedQuizLen, pool.length));
+            currentQIndex = 0;
+            quizScore = 0;
+            quizMistakes = [];
+
+            document.getElementById('quiz-setup-card').classList.add('hidden');
+            document.getElementById('quiz-result-card').classList.add('hidden');
+            document.getElementById('quiz-active-card').classList.remove('hidden');
+
+            const isTimed = document.getElementById('quiz-timed-toggle').checked;
+            const timerBadge = document.getElementById('quiz-timer-badge');
+            clearInterval(quizTimerInterval);
+            if (isTimed) {
+                quizSecondsLeft = activeQuestions.length * 45;
+                timerBadge.classList.remove('hidden');
+                updateQuizTimerText();
+                quizTimerInterval = setInterval(() => {
+                    quizSecondsLeft--;
+                    updateQuizTimerText();
+                    if (quizSecondsLeft <= 0) {
+                        clearInterval(quizTimerInterval);
+                        finishQuiz();
+                    }
+                }, 1000);
+            } else {
+                timerBadge.classList.add('hidden');
+            }
+
+            renderQuizQuestion();
+        }
+
+        function updateQuizTimerText() {
+            const m = String(Math.floor(quizSecondsLeft / 60)).padStart(2, '0');
+            const s = String(quizSecondsLeft % 60).padStart(2, '0');
+            document.getElementById('quiz-timer-val').textContent = `${m}:${s}`;
+        }
+
+        function renderQuizQuestion() {
+            const q = activeQuestions[currentQIndex];
+            document.getElementById('quiz-q-counter').textContent = `${currentQIndex + 1} / ${activeQuestions.length}`;
+            document.getElementById('quiz-q-cat').textContent = q.cat[currentLang];
+            document.getElementById('quiz-q-text').textContent = q.q[currentLang];
+            document.getElementById('quiz-feedback-box').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            const opts = q.opts[currentLang];
+            document.getElementById('quiz-options-box').innerHTML = opts.map((opt, idx) => `
+                <button onclick="answerQuizQuestion(${idx}, this)" class="quiz-opt-btn w-full p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-800 hover:border-indigo-500 text-start text-xs sm:text-sm font-extrabold transition-all">
+                    ${opt}
+                </button>
+            `).join('');
+        }
+
+        function answerQuizQuestion(chosenIdx, btnEl) {
+            const q = activeQuestions[currentQIndex];
+            const buttons = document.querySelectorAll('.quiz-opt-btn');
+            buttons.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('quiz-feedback-box');
+            feedback.classList.remove('hidden');
+
+            if (chosenIdx === q.correct) {
+                quizScore++;
+                addXP(10);
+                btnEl.classList.add('border-emerald-500', 'bg-emerald-50', 'dark:bg-emerald-950/60', 'text-emerald-700', 'dark:text-emerald-300');
+                feedback.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400 font-black">✓ ${currentLang === 'ar' ? 'إجابة صحيحة! (+10 XP)' : 'Correct! (+10 XP)'}</span> — ${q.exp[currentLang]}`;
+            } else {
+                btnEl.classList.add('border-rose-500', 'bg-rose-50', 'dark:bg-rose-950/60', 'text-rose-700', 'dark:text-rose-300');
+                buttons[q.correct].classList.add('border-emerald-500', 'bg-emerald-50', 'dark:bg-emerald-950/60');
+                feedback.innerHTML = `<span class="text-rose-600 dark:text-rose-400 font-black">✕ ${currentLang === 'ar' ? 'إجابة غير صحيحة' : 'Incorrect'}</span> — ${q.exp[currentLang]}`;
+                quizMistakes.push({
+                    q: q.q[currentLang],
+                    correctAns: q.opts[currentLang][q.correct],
+                    exp: q.exp[currentLang]
+                });
+            }
+
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.classList.remove('hidden');
+            nextBtn.classList.add('inline-flex');
+        }
+
+        function nextQuizQuestion() {
+            currentQIndex++;
+            if (currentQIndex < activeQuestions.length) {
+                renderQuizQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            clearInterval(quizTimerInterval);
+            document.getElementById('quiz-active-card').classList.add('hidden');
+            document.getElementById('quiz-result-card').classList.remove('hidden');
+
+            const pct = Math.round((quizScore / activeQuestions.length) * 100);
+            document.getElementById('quiz-score-title').textContent = currentLang === 'ar'
+                ? `نتيجتك: ${quizScore} / ${activeQuestions.length} (${pct}%)`
+                : `Your Score: ${quizScore} / ${activeQuestions.length} (${pct}%)`;
+
+            document.getElementById('quiz-score-msg').textContent = pct >= 80
+                ? (currentLang === 'ar' ? 'أداء ممتاز! أنت مستعد للتفوق في تانية بكالوريا.' : 'Outstanding performance! Ready to excel.')
+                : (currentLang === 'ar' ? 'نتيجة جيدة! راجع أخطاءك بالأسفل لتعزيز مستواك.' : 'Good effort! Review your mistakes below.');
+
+            const mistakesWrap = document.getElementById('quiz-mistakes-wrap');
+            if (quizMistakes.length > 0) {
+                mistakesWrap.classList.remove('hidden');
+                document.getElementById('quiz-mistakes-list').innerHTML = quizMistakes.map(m => `
+                    <div class="p-3 rounded-2xl bg-rose-50/70 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-xs space-y-1">
+                        <p class="font-black">${m.q}</p>
+                        <p class="text-emerald-700 dark:text-emerald-300 font-extrabold">✓ ${m.correctAns}</p>
+                        <p class="text-slate-600 dark:text-slate-400">${m.exp}</p>
+                    </div>
+                `).join('');
+            } else {
+                mistakesWrap.classList.add('hidden');
+            }
+        }
+
+        function resetQuizUI() {
+            clearInterval(quizTimerInterval);
+            document.getElementById('quiz-active-card').classList.add('hidden');
+            document.getElementById('quiz-result-card').classList.add('hidden');
+            document.getElementById('quiz-setup-card').classList.remove('hidden');
+        }
+
+        // ==========================================
+        // 9. INTERACTIVE LABS (PYTHON, I'RAB, FLASHCARDS, POMODORO)
+        // ==========================================
+        function loadPythonPreset() {
+            const val = document.getElementById('py-preset-select').value;
+            const editor = document.getElementById('py-code-input');
+            if (val === 'clean') {
+                editor.value = `# تنظيف قائمة درجات الطلاب من القيم الفارغة والمكررة\nraw_scores = [95, None, 88, 95, 92, None]\nclean_scores = list(dict.fromkeys([x for x in raw_scores if x is not None]))\nprint("Clean Data:", clean_scores)\nprint("Average:", round(sum(clean_scores)/len(clean_scores), 2))`;
+            } else if (val === 'ai') {
+                editor.value = `# محاكاة تصنيف أداء الطالب بالذكاء الاصطناعي\nscore = 94\nlevel = "Excellent (Grade A+)" if score >= 90 else "Good"\nprint("Student Score:", score, "->", level)`;
+            } else {
+                editor.value = `# حساب مجموع مواد البكالوريا المصرية\narabic, english, history, coding = 78, 49, 58, 40\ntotal = arabic + english + history + coding\nprint("Total Score:", total, "/ 230")`;
+            }
+        }
+
+        function runPythonSimulator() {
+            const val = document.getElementById('py-preset-select').value;
+            const out = document.getElementById('py-output-box');
+            if (val === 'clean') {
+                out.innerHTML = `Clean Data: [95, 88, 92]<br>Average: 91.67`;
+            } else if (val === 'ai') {
+                out.innerHTML = `Student Score: 94 -> Excellent (Grade A+)`;
+            } else {
+                out.innerHTML = `Total Score: 225 / 230 (97.8%)`;
+            }
+            addXP(5);
+        }
+
+        function showIrabInfo(text) {
+            document.getElementById('irab-result-box').textContent = text;
+            addXP(2);
+        }
+
+        const flashcardsData = [
+            { q: { ar: "ما علامة إعراب الأسماء الخمسة (أب، أخ، حم، فو، ذو)؟", en: "How are the Arabic Five Nouns inflected?" }, a: { ar: "تُرفع بالواو، وتُنصب بالألف، وتُجر بالياء بشروطها.", en: "Nominative: Waw | Accusative: Alif | Genitive: Ya." } },
+            { q: { ar: "English Unit 8: What is the Future Perfect form?", en: "English Unit 8: What is the Future Perfect form?" }, a: { ar: "will have + P.P. (مع الكلمات الدالة مثل: by 2030 / by next month).", en: "will have + Past Participle (used with 'by + future time')." } },
+            { q: { ar: "King Lear: Who remained faithful to Lear in disguise as Caius?", en: "King Lear: Who remained faithful to Lear in disguise as Caius?" }, a: { ar: "إيرل كنت (The Earl of Kent).", en: "The Earl of Kent." } },
+            { q: { ar: "التاريخ الوطني: متى تم عبور قناة السويس وتحطيم خط بارليف؟", en: "National History: When was the Suez Canal crossed?" }, a: { ar: "السادس من أكتوبر 1973م (العاشر من رمضان 1393هـ).", en: "October 6, 1973 (10th of Ramadan)." } },
+            { q: { ar: "البرمجة والـ AI: ما وظيفة نظام DNS؟", en: "Programming & AI: What is the role of DNS?" }, a: { ar: "ترجمة أسماء النطاقات (Domain Names) إلى عناوين IP رقمية.", en: "Translates human-readable domain names into IP addresses." } },
+            { q: { ar: "البلاغة: ما أركان التشبيه البليغ؟", en: "Arabic Rhetoric: What are the components of Tashbih Baligh?" }, a: { ar: "المشبه والمشبه به فقط (حُذفت أداة التشبيه ووجه الشبه).", en: "Only Tenor and Vehicle (tool and shared trait omitted)." } }
+        ];
+        let currentFlashIdx = 0;
+
+        function renderFlashcard() {
+            const card = flashcardsData[currentFlashIdx];
+            document.getElementById('flashcard-counter').textContent = `${currentFlashIdx + 1} / ${flashcardsData.length}`;
+            document.getElementById('flashcard-front').textContent = card.q[currentLang];
+            document.getElementById('flashcard-back').textContent = card.a[currentLang];
+            document.getElementById('flashcard-inner').classList.remove('rotate-y-180');
+        }
+
+        function flipFlashcard() {
+            document.getElementById('flashcard-inner').classList.toggle('rotate-y-180');
+        }
+
+        function nextFlashcard() {
+            currentFlashIdx = (currentFlashIdx + 1) % flashcardsData.length;
+            renderFlashcard();
+        }
+
+        function prevFlashcard() {
+            currentFlashIdx = (currentFlashIdx - 1 + flashcardsData.length) % flashcardsData.length;
+            renderFlashcard();
+        }
+
+        let pomoSeconds = 25 * 60;
+        let pomoInterval = null;
+
+        function updatePomoDisplay() {
+            const m = String(Math.floor(pomoSeconds / 60)).padStart(2, '0');
+            const s = String(pomoSeconds % 60).padStart(2, '0');
+            document.getElementById('pomo-display').textContent = `${m}:${s}`;
+        }
+
+        function startPomodoro() {
+            if (pomoInterval) return;
+            document.getElementById('pomo-status').textContent = currentLang === 'ar' ? 'المؤقت يعمل الآن... بالتوفيق!' : 'Focus timer running...';
+            pomoInterval = setInterval(() => {
+                pomoSeconds--;
+                updatePomoDisplay();
+                if (pomoSeconds <= 0) {
+                    clearInterval(pomoInterval);
+                    pomoInterval = null;
+                    addXP(30);
+                    showToast(currentLang === 'ar' ? 'رائع! أتممت جلسة مذاكرة كاملة (+30 XP)' : 'Focus session completed! (+30 XP)');
+                    resetPomodoro();
+                }
+            }, 1000);
+        }
+
+        function pausePomodoro() {
+            clearInterval(pomoInterval);
+            pomoInterval = null;
+            document.getElementById('pomo-status').textContent = currentLang === 'ar' ? 'تم الإيقاف المؤقت' : 'Timer paused';
+        }
+
+        function resetPomodoro() {
+            clearInterval(pomoInterval);
+            pomoInterval = null;
+            pomoSeconds = 25 * 60;
+            updatePomoDisplay();
+            document.getElementById('pomo-status').textContent = currentLang === 'ar' ? 'جلسة تركيز عميق (25 دقيقة)' : 'Deep focus session (25 mins)';
+        }
+
+        // ==========================================
+        // 10. STUDENT COMMUNITY WALL
+        // ==========================================
+        let communityPosts = JSON.parse(localStorage.getItem('fp_posts') || 'null') || [
+            { author: "عمار أشرف عبدالمنصف (قائد الموقع)", role: "قائد المنصة", text: "أهلاً بكل طلاب تانية بكالوريا! تم رفع جميع دروس العربي والإنجليزي والتاريخ والبرمجة مع 40 تقييماً وزارياً محلولاً. بالتوفيق للجميع!", likes: 18 },
+            { author: "أحمد محمد يحيى", role: "فريق البرمجة والـ AI", text: "نصيحة في الفصل السابع: ركزوا على الفرق بين الذكاء الاصطناعي التحليلي والتوليدي وخطوات تنظيف البيانات في بايثون.", likes: 11 },
+            { author: "ياسين محمد أحمد", role: "فريق التاريخ والإنجليزي", text: "ملخص مسرحية King Lear الفصول الخمسة كاملة موجود في قسم المناهج مع أسئلة التقييمات المحلولة.", likes: 9 }
+        ];
+
+        function renderCommunityPosts() {
+            const list = document.getElementById('community-posts-list');
+            if (!list) return;
+            list.innerHTML = communityPosts.map((p, idx) => `
+                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 flex items-start justify-between gap-3">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs sm:text-sm font-black text-indigo-600 dark:text-indigo-400">${p.author}</span>
+                            <span class="px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-[10px] font-extrabold">${p.role}</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">${p.text}</p>
+                    </div>
+                    <button onclick="likeCommunityPost(${idx})" class="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-extrabold text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 shrink-0 flex items-center gap-1">
+                        <i class="fa-solid fa-heart"></i> <span>${p.likes}</span>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function addCommunityPost() {
+            const authorInput = document.getElementById('comm-author-input');
+            const msgInput = document.getElementById('comm-msg-input');
+            const text = msgInput.value.trim();
+            if (!text) return;
+            const author = authorInput.value.trim() || (currentUser ? currentUser.name : (currentLang === 'ar' ? 'طالب تانية بكالوريا' : 'Grade 11 Student'));
+            communityPosts.unshift({ author, role: currentLang === 'ar' ? 'طالب' : 'Student', text, likes: 1 });
+            localStorage.setItem('fp_posts', JSON.stringify(communityPosts));
+            msgInput.value = '';
+            addXP(10);
+            renderCommunityPosts();
+            showToast(currentLang === 'ar' ? 'تم نشر مشاركتك في المجتمع (+10 XP)' : 'Post published! (+10 XP)');
+        }
+
+        function likeCommunityPost(idx) {
+            communityPosts[idx].likes++;
+            localStorage.setItem('fp_posts', JSON.stringify(communityPosts));
+            renderCommunityPosts();
+        }
+
+        // ==========================================
+        // 11. TEAM MEMBERS (5 MEMBERS LED BY AMMAR)
+        // ==========================================
+        let teamMembers = JSON.parse(localStorage.getItem('fp_team') || 'null') || [
+            { nameAr: "عمار أشرف عبدالمنصف", nameEn: "Ammar Ashraf Abdelmonsef", roleAr: "قائد الموقع والمطور الرئيسي", roleEn: "Site Leader & Lead Developer", isLeader: true, color: "from-amber-500 to-indigo-600" },
+            { nameAr: "أحمد محمد يحيى", nameEn: "Ahmed Mohamed Yahya", roleAr: "مسؤول البرمجة والذكاء الاصطناعي", roleEn: "Programming & AI Content Lead", isLeader: false, color: "from-indigo-500 to-purple-600" },
+            { nameAr: "أحمد محمود موسى", nameEn: "Ahmed Mahmoud Moussa", roleAr: "مسؤول اللغة العربية والاختبارات", roleEn: "Arabic Language & Exams Lead", isLeader: false, color: "from-emerald-500 to-teal-600" },
+            { nameAr: "أنس أشرف عبدالمنصف", nameEn: "Anas Ashraf Abdelmonsef", roleAr: "مصمم الواجهات والتجربة التفاعلية", roleEn: "UI/UX & Interactive Design Lead", isLeader: false, color: "from-purple-500 to-pink-600" },
+            { nameAr: "ياسين محمد أحمد", nameEn: "Yassin Mohamed Ahmed", roleAr: "مسؤول التاريخ والإنجليزي والفيديوهات", roleEn: "History, English & Video Lead", isLeader: false, color: "from-sky-500 to-cyan-600" }
+        ];
+
+        function renderTeamCards() {
+            const grid = document.getElementById('team-cards-grid');
+            if (!grid) return;
+            grid.innerHTML = teamMembers.map(m => {
+                const name = currentLang === 'ar' ? m.nameAr : m.nameEn;
+                const role = currentLang === 'ar' ? m.roleAr : m.roleEn;
+                const initials = name.split(' ').slice(0, 2).map(w => w[0]).join('');
+                return `
+                    <div class="p-5 rounded-3xl bg-white/90 dark:bg-slate-900/90 glass-card border ${m.isLeader ? 'border-amber-400 dark:border-amber-500 ring-2 ring-amber-400/20' : 'border-slate-200 dark:border-slate-800'} shadow-md text-center space-y-3 hover:-translate-y-1 transition-transform">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br ${m.color} text-white font-black text-lg flex items-center justify-center shadow-lg">
+                            ${initials}
+                        </div>
+                        ${m.isLeader ? `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 text-[10px] font-black"><i class="fa-solid fa-crown text-amber-500"></i> ${currentLang === 'ar' ? 'قائد الموقع' : 'Site Leader'}</span>` : ''}
+                        <h3 class="text-sm sm:text-base font-black leading-snug">${name}</h3>
+                        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">${role}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openTeamEditModal() {
+            const container = document.getElementById('team-edit-inputs');
+            container.innerHTML = teamMembers.map((m, idx) => `
+                <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 space-y-2">
+                    <label class="text-[11px] font-black text-indigo-600 dark:text-indigo-400">عضو #${idx + 1} ${m.isLeader ? '(قائد الموقع)' : ''}</label>
+                    <input type="text" id="tm-name-ar-${idx}" value="${m.nameAr}" class="w-full px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-bold">
+                    <input type="text" id="tm-role-ar-${idx}" value="${m.roleAr}" class="w-full px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs">
+                </div>
+            `).join('');
+            document.getElementById('team-modal').classList.remove('hidden');
+        }
+
+        function closeTeamEditModal() {
+            document.getElementById('team-modal').classList.add('hidden');
+        }
+
+        function saveTeamMembers() {
+            teamMembers.forEach((m, idx) => {
+                m.nameAr = document.getElementById(`tm-name-ar-${idx}`).value.trim() || m.nameAr;
+                m.roleAr = document.getElementById(`tm-role-ar-${idx}`).value.trim() || m.roleAr;
+            });
+            localStorage.setItem('fp_team', JSON.stringify(teamMembers));
+            closeTeamEditModal();
+            renderTeamCards();
+            showToast(currentLang === 'ar' ? 'تم حفظ بيانات أعضاء الفريق!' : 'Team members updated!');
+        }
+
+        // ==========================================
+        // 12. AUTHENTICATION & SUPPORT ACTIONS
+        // ==========================================
+        function handleAuthHeaderClick() {
+            openAuthModal(currentUser ? 'profile' : 'login');
+        }
+
+        function openAuthModal(mode) {
+            authMode = mode;
+            const modal = document.getElementById('auth-modal');
+            const form = document.getElementById('auth-form');
+            const prof = document.getElementById('auth-profile-view');
+
+            if (currentUser) {
+                form.classList.add('hidden');
+                prof.classList.remove('hidden');
+                document.getElementById('auth-modal-title').textContent = currentLang === 'ar' ? 'حساب الطالب' : 'Student Account';
+                document.getElementById('profile-user-name').textContent = currentUser.name;
+                document.getElementById('profile-user-email').textContent = currentUser.email;
+                document.getElementById('profile-xp').textContent = `${studentXP} XP`;
+                document.getElementById('profile-done').textContent = `${completedLessons.length} / ${lessonsDB.length}`;
+            } else {
+                prof.classList.add('hidden');
+                form.classList.remove('hidden');
+                const isSignup = authMode === 'signup';
+                document.getElementById('auth-name-wrap').classList.toggle('hidden', !isSignup);
+                document.getElementById('auth-modal-title').textContent = isSignup
+                    ? (currentLang === 'ar' ? 'إنشاء حساب طالب جديد' : 'Create Student Account')
+                    : (currentLang === 'ar' ? 'تسجيل الدخول إلى المنصة' : 'Login to Platform');
+                document.getElementById('auth-submit-btn').textContent = isSignup
+                    ? (currentLang === 'ar' ? 'إنشاء الحساب' : 'Sign Up')
+                    : (currentLang === 'ar' ? 'تسجيل الدخول' : 'Login');
+                document.getElementById('auth-switch-btn').textContent = isSignup
+                    ? (currentLang === 'ar' ? 'لديك حساب بالفعل؟ سجل الدخول' : 'Already have an account? Login')
+                    : (currentLang === 'ar' ? 'ليس لديك حساب؟ أنشئ حساب طالب جديد' : 'New student? Create an account');
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function switchAuthMode() {
+            openAuthModal(authMode === 'login' ? 'signup' : 'login');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        function submitAuthForm(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email-input').value.trim();
+            const nameInput = document.getElementById('auth-name-input').value.trim();
+            const name = nameInput || email.split('@')[0];
+            currentUser = { name, email };
+            localStorage.setItem('fp_user', JSON.stringify(currentUser));
+            updateAuthUI();
+            closeAuthModal();
+            showToast(currentLang === 'ar' ? `أهلاً بك يا ${name} في منصة نَبض المستقبل!` : `Welcome, ${name}!`);
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('fp_user');
+            updateAuthUI();
+            closeAuthModal();
+            showToast(currentLang === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Logged out successfully');
+        }
+
+        function updateAuthUI() {
+            const label = document.getElementById('auth-header-text');
+            if (!label) return;
+            label.textContent = currentUser ? currentUser.name.split(' ')[0] : i18n[currentLang].navLogin;
+        }
+
+        function copySupportPhone() {
+            const temp = document.createElement('input');
+            temp.value = '01061367232';
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast(currentLang === 'ar' ? 'تم نسخ رقم الواتساب: 01061367232' : 'WhatsApp number copied: 01061367232');
+        }
+
+        function submitSupportForm(e) {
+            e.preventDefault();
+            const ticketId = Math.floor(10000 + Math.random() * 90000);
+            e.target.reset();
+            showToast(currentLang === 'ar'
+                ? `تم إرسال رسالتك للدعم بنجاح! رقم المتابعة: #${ticketId}`
+                : `Support message sent! Ticket #${ticketId}`);
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function showToast(msg, isError = false) {
+            const box = document.getElementById('toast-box');
+            const icon = document.getElementById('toast-icon');
+            document.getElementById('toast-msg').textContent = msg;
+            icon.className = isError
+                ? 'fa-solid fa-circle-exclamation text-rose-400 text-base'
+                : 'fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-base';
+            box.classList.remove('hidden');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => box.classList.add('hidden'), 3200);
+        }
+
+        // ==========================================
+        // 13. INITIAL BOOTSTRAP
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            updateProgressUI();
+            applyLanguage();
+        });
+    </script>
+</body>
+</html>
